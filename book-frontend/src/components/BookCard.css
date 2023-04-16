@@ -1,0 +1,14 @@
+.recipe-card {
+    border-radius: 10px;
+    width: 280px;
+    background: #add290;
+}
+
+.border-fine {
+    border: black 1px solid;
+}
+
+.image-size-small {
+    width: 200px;
+    height: 230px;
+}

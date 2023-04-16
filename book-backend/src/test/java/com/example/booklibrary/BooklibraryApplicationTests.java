@@ -1,0 +1,16 @@
+package com.example.booklibrary;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+
+@SpringBootTest
+class BooklibraryApplicationTests {
+
+    @Test
+    void contextLoads() {
+        Assertions.assertEquals(2, 1 + 1);
+    }
+
+}

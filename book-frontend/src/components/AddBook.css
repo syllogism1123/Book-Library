@@ -1,0 +1,33 @@
+.addRecipe {
+    padding: 30px;
+}
+
+
+
+.addRecipe input{
+    padding: 15px;
+    border-radius: 5px;
+    margin: 0;
+    border: solid 3px black;
+}
+
+.addBtn {
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: double 3px transparent;
+    background-image:     linear-gradient(
+            to right,
+            #E7484F,
+            #F68B1D,
+            #FCED00,
+            #009E4F,
+            #00AAC3,
+            #732982
+    );
+    animation:slidebg 2s linear infinite;
+}
+
+
+
