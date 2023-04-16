@@ -1,6 +1,7 @@
 import {FormEvent, useState} from "react";
 import "./AddBook.css"
 import {NewBook} from "../model/Book";
+import {useNavigate} from "react-router-dom";
 
 type AddBookProps = {
     addBook: (newBook: NewBook) => void
@@ -13,6 +14,8 @@ export default function AddBook(props: AddBookProps) {
     const [author, setAuthor] = useState<string>(initialState);
     const [art, setArt] = useState<string>(initialState);
 
+    const navigate = useNavigate()
+
     function onSaveBook(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
@@ -20,8 +23,9 @@ export default function AddBook(props: AddBookProps) {
             console.error("Title required")
             return
         }
-
-        props.addBook({isbn, title, author, art: "EBOOK"});
+        const newBook: NewBook = {isbn: isbn, title: title, author: author, art: "EBOOK"};
+        props.addBook(newBook);
+        navigate("/books")
     }
 
     return (

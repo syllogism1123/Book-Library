@@ -27,7 +27,7 @@ public class UserController {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    @PostMapping()
+    @PostMapping("/signup")
     public ResponseEntity<MongoUser> createUser(@RequestBody MongoUser mongoUser) {
         userService.addMongoUser(mongoUser);
         return new ResponseEntity<>(HttpStatus.CREATED);
