@@ -26,7 +26,6 @@ export default function BookCard(props: BookCardProps) {
                         <p>{props.book.art}</p>
                     </Typography>
                     <Typography color="textSecondary">
-                        <p className="p-font">{props.book.id}</p>
                         <p className="p-font">{props.book.isbn}</p>
                         <p className="p-font">{props.book.title}</p>
                         <p className="p-font">{props.book.author}</p>
