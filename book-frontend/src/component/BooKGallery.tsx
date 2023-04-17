@@ -6,7 +6,7 @@ type BookGalleryProps = {
     books: Book[],
     addBook: (book: Book) => void;
     updateBook: (book: Book) => void;
-    deleteBook: (isbn: string) => void;
+    deleteBook: (id: string) => void;
 }
 
 export default function BooKGallery(props: BookGalleryProps) {

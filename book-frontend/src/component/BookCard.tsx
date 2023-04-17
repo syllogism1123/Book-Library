@@ -6,7 +6,7 @@ type BookCardProps = {
     book: Book,
     addBook: (book: Book) => void;
     updateBook: (book: Book) => void;
-    deleteBook: (isbn: string) => void;
+    deleteBook: (id: string) => void;
 
 }
 export default function BookCard(props: BookCardProps) {
@@ -25,6 +25,7 @@ export default function BookCard(props: BookCardProps) {
                 <Typography variant="h5" component="h3">
                     {props.book.art}
                 </Typography>
+                <Typography className="p-font">{props.book.id}</Typography>
                 <Typography className="p-font">{props.book.isbn}</Typography>
                 <Typography className="p-font">{props.book.title}</Typography>
                 <Typography className="p-font">{props.book.author}</Typography>
