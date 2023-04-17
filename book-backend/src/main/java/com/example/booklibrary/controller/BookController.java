@@ -20,28 +20,29 @@ public class BookController {
     }
 
     @GetMapping()
-    public List<Book> getAllBooks() {
-        return service.getAllBooks();
+    public ResponseEntity<List<Book>> getAllBooks() {
+
+        return new ResponseEntity<>(service.getAllBooks(), HttpStatus.OK);
     }
 
     @PostMapping()
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        service.addBook(book);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(service.addBook(book), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable String id) {
-        return (service.getBookById(id));
+    public ResponseEntity<Book> getBookById(@PathVariable String id) {
+
+        return new ResponseEntity<>(service.getBookById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public Book updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
-        return service.updateBookById(id, updatedBook);
+    public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
+        return new ResponseEntity<>(service.updateBookById(id, updatedBook), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Book> deleteBookByISBN(@PathVariable String id) {
+    public ResponseEntity<Void> deleteBookByISBN(@PathVariable String id) {
         service.deleteBookById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

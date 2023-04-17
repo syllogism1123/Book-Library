@@ -15,8 +15,8 @@ export const BookDetails = () => {
         }
     }, [])
 
-    function loadBookByIsbn(isbn: string) {
-        axios.get('/api/books/' + isbn)
+    function loadBookByIsbn(id: string) {
+        axios.get('http://localhost:8080/api/books/' + id)
             .then((response) => {
                 setBook(response.data)
             })

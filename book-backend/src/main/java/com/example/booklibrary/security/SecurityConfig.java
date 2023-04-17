@@ -23,7 +23,7 @@ public class SecurityConfig {
         requestHandler.setCsrfRequestAttributeName(null);
 
         return http.cors()
-                .and().csrf().disable()
+                .and()
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(requestHandler))

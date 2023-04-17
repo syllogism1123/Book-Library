@@ -27,20 +27,30 @@ function App() {
     );
 
     const loadAllBooks = () => {
-        axios.get("/api/books")
-            .then(response => setBooks(response.data))
-            .catch(reason => console.error(reason));
+        axios.get("http://localhost:8080/api/books")
+            .then((response) => {
+                setBooks(response.data)
+            })
+            .catch((reason) => {
+                console.error(reason)
+            });
+
+
     }
 
     const addBook = (newBook: BookModel) => {
-        axios.post("/api/books", newBook)
-            .then(() => loadAllBooks())
-            .catch(reason => console.error(reason));
+        axios.post("http://localhost:8080/api/books", newBook)
+            .then(() => {
+                loadAllBooks()
+            })
+            .catch((reason) => {
+                console.error(reason)
+            });
     }
 
     const updateBook = (book: Book) => {
-        axios.put(`/api/books/${book.id}`, book)
-            .then(response => {
+        axios.put(`http://localhost:8080/api/books/${book.id}`, book)
+            .then((response) => {
                 setBooks(books.map((currentBook) => {
                     if (currentBook.id === book.id) {
                         return response.data;
@@ -49,18 +59,26 @@ function App() {
                     }
                 }))
             })
-            .then(() => loadAllBooks())
-            .catch(reason => console.error(reason));
+            .then(() => {
+                loadAllBooks()
+            })
+            .catch((reason) => {
+                console.error(reason)
+            });
     }
 
     const deleteBook = (id: string) => {
-        axios.delete(`/books/${id}`)
+        axios.delete(`http://localhost:8080/books/${id}`)
             .then(() => {
                     setBooks(books.filter((book) => book.id !== id))
                 }
             )
-            .then(() => loadAllBooks())
-            .catch(reason => console.error(reason));
+            .then(() => {
+                loadAllBooks()
+            })
+            .catch((reason) => {
+                console.error(reason)
+            });
     }
 
     useEffect(() => {
