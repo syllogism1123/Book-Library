@@ -35,12 +35,10 @@ export const BookDetails = () => {
 
     return (
         <div>
-            <Typography color="textSecondary">
-                <p className="p-font">{book?.isbn}</p>
-                <p className="p-font">{book?.title}</p>
-                <p className="p-font">{book?.author}</p>
-                <p className="p-font">{book?.art}</p>
-            </Typography>
+            <Typography className="p-font">ISBN: {book?.isbn}</Typography>
+            <Typography className="p-font">Title: {book?.title}</Typography>
+            <Typography className="p-font">Author: {book?.author}</Typography>
+            <Typography className="p-font">BookArt: {book?.art}</Typography>
         </div>
     );
 }
