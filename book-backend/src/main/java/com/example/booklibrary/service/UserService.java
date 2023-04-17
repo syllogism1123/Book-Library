@@ -10,7 +10,7 @@ public class UserService {
     private final MongoUserRepository mongoUserRepository;
     private final PasswordEncoder encoder;
 
-    public UserService(MongoUserRepository mongoUserRepository, PasswordEncoder passwordEncode, PasswordEncoder encoder) {
+    public UserService(MongoUserRepository mongoUserRepository, PasswordEncoder encoder) {
         this.mongoUserRepository = mongoUserRepository;
         this.encoder = encoder;
     }
@@ -22,6 +22,4 @@ public class UserService {
         MongoUser encodedUser = new MongoUser(username, encodedPassword);
         return mongoUserRepository.save(encodedUser);
     }
-
-
 }

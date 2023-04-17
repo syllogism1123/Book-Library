@@ -1,19 +1,7 @@
 
-{
-Kbook-backend/src/main/java/com/example/booklibrary/service/BookService.java,1\f\1fc032f80afa8a668b4cca4730a216ae3af9be0c
 
 Obook-backend/src/test/java/com/example/booklibrary/service/BookServiceTest.java,c\d\cdb2536ce64ec932d4c975a8dc3bfaa2682371eb
-
-Obook-backend/src/main/java/com/example/booklibrary/security/SecurityConfig.java,2\6\26e2bc3f9c400cfa6ea7a574d0957018c9216a9b
 V
 &book-frontend/src/component/useUser.ts,5\4\5456f2c2a54c891cb9e6e9d79dae05b73da7ded0
 …
 Ubook-backend/src/test/java/com/example/booklibrary/controller/BookControllerTest.java,e\3\e32b9cf359422ba2415af1c2001b4f62438a631d
-X
-(book-frontend/src/component/BookCard.tsx,1\c\1c4805ada9361ac851b92e6c9e55d877087f2d04
-W
-'book-frontend/src/component/BookArt.tsx,3\0\30aa74772fd3ac0ea572c84b1992d01938cf1c52
-V
-&book-frontend/src/component/Header.tsx,c\5\c5164781468ec1366d96ee5609fb1c1ed5004a7e
-Y
-)book-frontend/src/component/SearchBar.tsx,8\4\842db97969f75e69de65d7a1e2298dc7ac905c35

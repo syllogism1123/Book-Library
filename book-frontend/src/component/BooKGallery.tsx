@@ -10,16 +10,47 @@ type BookGalleryProps = {
 }
 
 export default function BooKGallery(props: BookGalleryProps) {
+    const eBooks: Book[] = props.books.filter((book) => (book.art === BookArt.EBOOK));
+    const audioBooks: Book[] = props.books.filter((book) => (book.art === BookArt.AUDIOBOOK));
+    const softCovers: Book[] = props.books.filter((book) => (book.art === BookArt.SOFTCOVER));
+    const hardCovers: Book[] = props.books.filter((book) => (book.art === BookArt.HARDCOVER));
 
-    const selectedBooks: Book[] = props.books.filter((book) => (book.art === BookArt.HARDCOVER ||
-        book.art === BookArt.AUDIOBOOK || book.art === BookArt.SOFTCOVER || book.art === BookArt.EBOOK));
 
     return (
         <div className="book-gallery">
 
-            {selectedBooks.map((book) => {
-                return <BookCard key={book.id} book={book} addBook={props.addBook}
-                                 updateBook={props.updateBook} deleteBook={props.deleteBook}/>
-            })}
+            <div>
+                {
+                    eBooks.map((book) => {
+                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                                         updateBook={props.updateBook} deleteBook={props.deleteBook}/>
+                    })
+                }
+            </div>
+            <div>
+                {
+                    audioBooks.map((book) => {
+                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                                         updateBook={props.updateBook} deleteBook={props.deleteBook}/>
+                    })
+                }
+            </div>
+            <div>
+                {
+                    softCovers.map((book) => {
+                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                                         updateBook={props.updateBook} deleteBook={props.deleteBook}/>
+                    })
+                }
+            </div>
+            <div>
+                {
+                    hardCovers.map((book) => {
+                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                                         updateBook={props.updateBook} deleteBook={props.deleteBook}/>
+                    })
+                }
+            </div>
+
         </div>)
 }
