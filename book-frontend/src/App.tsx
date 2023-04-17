@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import Header from "./component/Header";
-import {BookModel} from "./component/BookModel";
+import {Book, BookModel} from "./component/BookModel";
 import axios from "axios";
 import BooKGallery from "./component/BooKGallery";
 import {SearchBar} from "./component/SearchBar";
@@ -14,8 +14,8 @@ import useUser from "./component/useUser";
 
 
 function App() {
-    const {login}=useUser();
-    const [books, setBooks] = useState<BookModel[]>([]);
+    const {login} = useUser();
+    const [books, setBooks] = useState<Book[]>([]);
     const [text, setText] = useState<string>('');
     const onTextChange = (text: string) => {
         setText(text);
@@ -23,7 +23,7 @@ function App() {
     const filteredBooks = books.filter((book) =>
         book.title.toLowerCase().includes(text.toLowerCase()) ||
         book.author.toLowerCase().includes(text.toLowerCase()) ||
-        book.isbn.toLowerCase().includes(text.toLowerCase())
+        book.id.toLowerCase().includes(text.toLowerCase())
     );
 
     const loadAllBooks = () => {
@@ -38,11 +38,11 @@ function App() {
             .catch(reason => console.error(reason));
     }
 
-    const updateBook = (book: BookModel) => {
-        axios.put(`/api/books/${book.isbn}`, book)
+    const updateBook = (book: Book) => {
+        axios.put(`/api/books/${book.id}`, book)
             .then(response => {
                 setBooks(books.map((currentBook) => {
-                    if (currentBook.isbn === book.isbn) {
+                    if (currentBook.id === book.id) {
                         return response.data;
                     } else {
                         return currentBook;
@@ -53,10 +53,10 @@ function App() {
             .catch(reason => console.error(reason));
     }
 
-    const deleteBook = (isbn: string) => {
-        axios.delete(`/books/${isbn}`)
+    const deleteBook = (id: string) => {
+        axios.delete(`/books/${id}`)
             .then(() => {
-                    setBooks(books.filter((book) => book.isbn !== isbn))
+                    setBooks(books.filter((book) => book.id !== id))
                 }
             )
             .then(() => loadAllBooks())
@@ -87,14 +87,14 @@ function App() {
                                              deleteBook={deleteBook}/>
                                 : <Alert severity="error" className="no-book-found">
                                     <h3>No Book Found!</h3>
-                            </Alert>
+                                </Alert>
                             }
                         </div>}>
                     </Route>
                     <Route path='/books/add'
                            element={<AddBook addBook={addBook}/>}>
                     </Route>
-                    <Route path="/books/:isbn" element={<BookDetails/>} />
+                    <Route path="/books/:id" element={<BookDetails/>}/>
                 </Routes>
             </BrowserRouter>
 

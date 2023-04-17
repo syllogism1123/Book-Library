@@ -7,11 +7,11 @@ import {useParams} from "react-router-dom";
 
 export const BookDetails = () => {
     const [book, setBook] = useState<BookModel>()
-    const {isbn} = useParams<{ isbn: string }>()
+    const {id} = useParams<{ id: string }>()
 
     useEffect(() => {
-        if (isbn) {
-            loadBookByIsbn(isbn)
+        if (id) {
+            loadBookByIsbn(id)
         }
     }, [])
 
@@ -24,6 +24,7 @@ export const BookDetails = () => {
                 console.error(error)
             })
     }
+
     return (
         <div>
             <Typography color="textSecondary">

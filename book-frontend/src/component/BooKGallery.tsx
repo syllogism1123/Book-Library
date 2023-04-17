@@ -1,19 +1,19 @@
-import {BookModel} from "./BookModel";
 import BookCard from "./BookCard";
 import {BookArt} from "./BookArt";
+import {Book} from "./BookModel";
 
 type BookGalleryProps = {
-    books: BookModel[],
-    addBook: (book: BookModel) => void;
-    updateBook: (book: BookModel) => void;
+    books: Book[],
+    addBook: (book: Book) => void;
+    updateBook: (book: Book) => void;
     deleteBook: (isbn: string) => void;
 }
 
 export default function BooKGallery(props: BookGalleryProps) {
-    const eBooks: BookModel[] = props.books.filter((book) => (book.art === BookArt.EBOOK));
-    const audioBooks: BookModel[] = props.books.filter((book) => (book.art === BookArt.AUDIOBOOK));
-    const softCovers: BookModel[] = props.books.filter((book) => (book.art === BookArt.SOFTCOVER));
-    const hardCovers: BookModel[] = props.books.filter((book) => (book.art === BookArt.HARDCOVER));
+    const eBooks: Book[] = props.books.filter((book) => (book.art === BookArt.EBOOK));
+    const audioBooks: Book[] = props.books.filter((book) => (book.art === BookArt.AUDIOBOOK));
+    const softCovers: Book[] = props.books.filter((book) => (book.art === BookArt.SOFTCOVER));
+    const hardCovers: Book[] = props.books.filter((book) => (book.art === BookArt.HARDCOVER));
 
 
     return (

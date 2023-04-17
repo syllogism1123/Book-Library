@@ -1,11 +1,11 @@
-import {BookModel} from "./BookModel";
 import {Button, Card, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {Book} from "./BookModel";
 
 type BookCardProps = {
-    book: BookModel,
-    addBook: (book: BookModel) => void;
-    updateBook: (book: BookModel) => void;
+    book: Book,
+    addBook: (book: Book) => void;
+    updateBook: (book: Book) => void;
     deleteBook: (isbn: string) => void;
 
 }

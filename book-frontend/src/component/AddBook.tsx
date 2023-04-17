@@ -1,5 +1,5 @@
 import {BookModel} from "./BookModel";
-import {Button, Card, FormControl,TextField} from "@mui/material";
+import {Button, Card, FormControl, TextField} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {BookArt} from "./BookArt";
 import {useNavigate} from "react-router-dom";
@@ -14,7 +14,7 @@ export const AddBook = (props: AddBookProps) => {
     }
     const [book, setBook] = useState<BookModel>(initialState);
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
         const targetName: string = event.target.name;
@@ -37,28 +37,28 @@ export const AddBook = (props: AddBookProps) => {
 
     return (
         <div className="form">
-            <Card variant="outlined" style={{ backgroundColor: 'cyan' }}>
+            <Card variant="outlined" style={{backgroundColor: 'cyan'}}>
                 <FormControl component="form" onSubmit={onSubmit}>
                     <TextField
                         name="isbn"
                         value={book.isbn}
                         onChange={onChange}
                         placeholder="ISBN"
-                        style={{ marginBottom: '10px' }}
+                        style={{marginBottom: '10px'}}
                     />
                     <TextField
                         name="title"
                         value={book.title}
                         onChange={onChange}
                         placeholder="Title"
-                        style={{ marginBottom: '10px' }}
+                        style={{marginBottom: '10px'}}
                     />
                     <TextField
                         name="author"
                         value={book.author}
                         onChange={onChange}
                         placeholder="Author"
-                        style={{ marginBottom: '10px' }}
+                        style={{marginBottom: '10px'}}
                     />
                     <Button variant="contained" type="submit" size="small">
                         Save
