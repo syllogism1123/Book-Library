@@ -1,0 +1,40 @@
+import {BookModel} from "./BookModel";
+import {Button, Card, CardContent, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+
+type BookCardProps = {
+    book: BookModel,
+    addBook: (book: BookModel) => void;
+    updateBook: (book: BookModel) => void;
+    deleteBook: (isbn: string) => void;
+
+}
+export default function BookCard(props: BookCardProps) {
+    const navi = useNavigate();
+    const onClick = () => {
+        props.deleteBook(props.book.isbn);
+    }
+    const toDetail = () => {
+        navi("/books/" + props.book.isbn)
+    }
+
+    return (
+        <div>
+            <Card variant="elevation" style={{backgroundColor: 'cyan', marginTop: "20px"}}>
+                <CardContent>
+                    <Typography variant="h5" component="h3">
+                        <p>{props.book.art}</p>
+                    </Typography>
+                    <Typography color="textSecondary">
+                        <p className="p-font">{props.book.isbn}</p>
+                        <p className="p-font">{props.book.title}</p>
+                        <p className="p-font">{props.book.author}</p>
+                    </Typography>
+                </CardContent>
+                <Button variant="outlined" onClick={toDetail}>Detail</Button>
+                <Button variant="contained" onClick={onClick}>Delete</Button>
+            </Card>
+        </div>
+    )
+
+}
