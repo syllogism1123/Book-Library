@@ -10,10 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class BookController {
     private final BookService service;
-
 
     public BookController(BookService service) {
         this.service = service;
@@ -42,7 +41,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBookByISBN(@PathVariable String id) {
+    public ResponseEntity<Void> deleteBookById(@PathVariable String id) {
         service.deleteBookById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

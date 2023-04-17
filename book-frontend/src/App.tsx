@@ -27,55 +27,77 @@ function App() {
     );
 
     const loadAllBooks = () => {
-        axios.get("http://localhost:8080/api/books")
-            .then((response) => {
-                setBooks(response.data)
+
+        const authToken = localStorage.getItem('authToken');
+        axios.get("http://localhost:8080/api/books", {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        }).then((response) => setBooks(response.data))
+
+            .catch((error) => {
+                console.error(error);
             })
-            .catch((reason) => {
-                console.error(reason)
-            });
-
-
-    }
+    };
 
     const addBook = (newBook: BookModel) => {
-        axios.post("http://localhost:8080/api/books", newBook)
-            .then(() => {
-                loadAllBooks()
-            })
-            .catch((reason) => {
-                console.error(reason)
-            });
+
+        const authToken = localStorage.getItem('authToken');
+        axios.post("http://localhost:8080/api/books", newBook, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        }).then(() => {
+            loadAllBooks()
+        }).catch((error) => {
+            console.error(error);
+        })
+
     }
 
     const updateBook = (book: Book) => {
-        axios.put(`http://localhost:8080/api/books/${book.id}`, book)
-            .then((response) => {
-                setBooks(books.map((currentBook) => {
-                    if (currentBook.id === book.id) {
-                        return response.data;
-                    } else {
-                        return currentBook;
-                    }
-                }))
-            })
-            .then(() => {
-                loadAllBooks()
-            })
-            .catch((reason) => {
-                console.error(reason)
-            });
+
+        const authToken = localStorage.getItem('authToken');
+        axios.put(`http://localhost:8080/api/books/${book.id}`, book, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        }).then((response) => {
+            setBooks(books.map((currentBook) => {
+                if (currentBook.id === book.id) {
+                    return response.data;
+                } else {
+                    return currentBook;
+                }
+            }))
+        }).catch(error => {
+            console.error(error);
+        })
     }
 
     const deleteBook = (id: string) => {
-        axios.delete(`http://localhost:8080/books/${id}`)
+        const authToken = localStorage.getItem('authToken');
+        axios.delete(`http://localhost:8080/books/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        })
             .then(() => {
                     setBooks(books.filter((book) => book.id !== id))
                 }
             )
-            .then(() => {
-                loadAllBooks()
-            })
             .catch((reason) => {
                 console.error(reason)
             });
