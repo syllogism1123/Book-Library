@@ -1,48 +1,14 @@
 import {BookModel} from "./BookModel";
-import {Button, Card, FormControl, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
-import React, {ChangeEvent, FormEvent, useState} from "react";
+import {Button, Card, FormControl, MenuItem, Select,TextField} from "@mui/material";
+import React from "react";
 import {BookArt} from "./BookArt";
-import {useNavigate} from "react-router-dom";
 
-type AddBookProps = {
-    addBook: (book: BookModel) => void;
+
+type EditBookProps = {
+    updateBook: (book: BookModel) => void;
 }
 
-export const AddBook = (props: AddBookProps) => {
-
-    const initialState: BookModel = {
-        isbn: "", title: "", author: "", art: BookArt.EBOOK
-    }
-    const [book, setBook] = useState<BookModel>(initialState);
-
-    const navigate = useNavigate();
-
-    const handleChange = (event: SelectChangeEvent) => {
-        const selectedBookArt: BookArt = event.target.value as BookArt;
-        setBook({
-            ...book,
-            art: selectedBookArt
-        });
-    };
-
-    function onChange(event: ChangeEvent<HTMLInputElement>) {
-        const targetName: string = event.target.name;
-        const value: string = event.target.value;
-        setBook({
-            ...book,
-            [targetName]: value
-        })
-    }
-
-
-    function onSubmit(event: FormEvent<HTMLFormElement>) {
-        if (book.isbn && book.author && book.title && book.art) {
-            event.preventDefault();
-            props.addBook(book)
-            setBook(initialState);
-        }
-        navigate('/books')
-    }
+export const EditBook = (props: EditBookProps) => {
 
 
     return (
