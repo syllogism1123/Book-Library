@@ -22,7 +22,7 @@ export default function BooKGallery(props: BookGalleryProps) {
             <div>
                 {
                     eBooks.map((book) => {
-                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                        return <BookCard key={book.id} book={book} addBook={props.addBook}
                                          updateBook={props.updateBook} deleteBook={props.deleteBook}/>
                     })
                 }
@@ -30,7 +30,7 @@ export default function BooKGallery(props: BookGalleryProps) {
             <div>
                 {
                     audioBooks.map((book) => {
-                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                        return <BookCard key={book.id} book={book} addBook={props.addBook}
                                          updateBook={props.updateBook} deleteBook={props.deleteBook}/>
                     })
                 }
@@ -38,7 +38,7 @@ export default function BooKGallery(props: BookGalleryProps) {
             <div>
                 {
                     softCovers.map((book) => {
-                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                        return <BookCard key={book.id} book={book} addBook={props.addBook}
                                          updateBook={props.updateBook} deleteBook={props.deleteBook}/>
                     })
                 }
@@ -46,7 +46,7 @@ export default function BooKGallery(props: BookGalleryProps) {
             <div>
                 {
                     hardCovers.map((book) => {
-                        return <BookCard key={book.isbn} book={book} addBook={props.addBook}
+                        return <BookCard key={book.id} book={book} addBook={props.addBook}
                                          updateBook={props.updateBook} deleteBook={props.deleteBook}/>
                     })
                 }

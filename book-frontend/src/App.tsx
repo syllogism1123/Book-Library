@@ -79,29 +79,33 @@ function App() {
                     return currentBook;
                 }
             }))
-        }).catch(error => {
-            console.error(error);
+        }).then(() => {
+            loadAllBooks()
         })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
+
     const deleteBook = (id: string) => {
+
         const authToken = localStorage.getItem('authToken');
-        axios.delete(`http://localhost:8080/books/${id}`, {
+        axios.delete(`http://localhost:8080/api/books/${id}`, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
+        }).then(() => {
+            setBooks(books.filter((book) => book.id !== id));
+            loadAllBooks()
+        }).catch((error) => {
+            console.error(error)
         })
-            .then(() => {
-                    setBooks(books.filter((book) => book.id !== id))
-                }
-            )
-            .catch((reason) => {
-                console.error(reason)
-            });
-    }
+    };
+
 
     useEffect(() => {
         loadAllBooks()

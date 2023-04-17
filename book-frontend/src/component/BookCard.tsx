@@ -12,10 +12,10 @@ type BookCardProps = {
 export default function BookCard(props: BookCardProps) {
     const navi = useNavigate();
     const onClick = () => {
-        props.deleteBook(props.book.isbn);
+        props.deleteBook(props.book.id);
     }
     const toDetail = () => {
-        navi("/books/" + props.book.isbn)
+        navi("/books/" + props.book.id)
     }
 
     return (
@@ -26,6 +26,7 @@ export default function BookCard(props: BookCardProps) {
                         <p>{props.book.art}</p>
                     </Typography>
                     <Typography color="textSecondary">
+                        <p className="p-font">{props.book.id}</p>
                         <p className="p-font">{props.book.isbn}</p>
                         <p className="p-font">{props.book.title}</p>
                         <p className="p-font">{props.book.author}</p>

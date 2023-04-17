@@ -11,12 +11,20 @@ export const BookDetails = () => {
 
     useEffect(() => {
         if (id) {
-            loadBookByIsbn(id)
+            loadBookById(id)
         }
     }, [])
 
-    function loadBookByIsbn(id: string) {
-        axios.get('http://localhost:8080/api/books/' + id)
+    const loadBookById = (id: string) => {
+        const authToken = localStorage.getItem('authToken');
+        axios.get('http://localhost:8080/api/books/' + id, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        })
             .then((response) => {
                 setBook(response.data)
             })
