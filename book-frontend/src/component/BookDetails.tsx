@@ -1,20 +1,13 @@
-import {BookModel} from "./BookModel";
 import {Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {BookModel} from "./BookModel";
 import {useParams} from "react-router-dom";
+import axios from "axios";
 
 
 export const BookDetails = () => {
     const [book, setBook] = useState<BookModel>()
-    const {id} = useParams<{ id: string }>()
-
-    useEffect(() => {
-        if (id) {
-            loadBookById(id)
-        }
-    }, [])
-
+    const {id} = useParams<{ id: string }>();
     const loadBookById = (id: string) => {
         const authToken = localStorage.getItem('authToken');
         axios.get('http://localhost:8080/api/books/' + id, {
@@ -32,6 +25,12 @@ export const BookDetails = () => {
                 console.error(error)
             })
     }
+    useEffect(() => {
+        if (id) {
+            loadBookById(id)
+        }
+    }, [])
+
 
     return (
         <div>

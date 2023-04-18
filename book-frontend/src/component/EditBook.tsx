@@ -1,46 +1,74 @@
-import {BookModel} from "./BookModel";
+import {Book} from "./BookModel";
 import {Button, Card, FormControl, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
-import React, {ChangeEvent, FormEvent, useState} from "react";
+import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {BookArt} from "./BookArt";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import axios from "axios";
 
 type EditBookProps = {
-    addBook: (book: BookModel) => void;
+    updateBook: (book: Book) => void;
 }
 
 export const EditBook = (props: EditBookProps) => {
-
-    const initialState: BookModel = {
-        isbn: "", title: "", author: "", art: BookArt.EBOOK
+    const initial: Book = {
+        id: "", isbn: "", title: "", author: "", art: BookArt.EBOOK
     }
-    const [book, setBook] = useState<BookModel>(initialState);
+    const [bookToUpdate, setBookToUpdate] = useState<Book>(initial);
+    const {id} = useParams<{ id: string }>();
+    const loadBookById = (id: string) => {
+        const authToken = localStorage.getItem('authToken');
+        axios.get('http://localhost:8080/api/books/' + id, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        })
+            .then((response) => {
+                setBookToUpdate(response.data)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
+    useEffect(() => {
+        if (id) {
+            loadBookById(id)
+        }
+    }, [])
+
 
     const navigate = useNavigate();
 
     const handleChange = (event: SelectChangeEvent) => {
         const selectedBookArt: BookArt = event.target.value as BookArt;
-        setBook({
-            ...book,
-            art: selectedBookArt
-        });
+        if (id) {
+            setBookToUpdate({
+                ...bookToUpdate,
+                id: id,
+                art: selectedBookArt
+            });
+        }
+
     };
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
         const targetName: string = event.target.name;
         const value: string = event.target.value;
-        setBook({
-            ...book,
-            [targetName]: value
-        })
+        if (id) {
+            setBookToUpdate({
+                ...bookToUpdate,
+                id: id,
+                [targetName]: value
+            })
+        }
     }
 
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
-        if (book.isbn && book.author && book.title && book.art) {
-            event.preventDefault();
-            props.addBook(book)
-            setBook(initialState);
-        }
+        event.preventDefault();
+        props.updateBook(bookToUpdate)
         navigate('/books')
     }
 
@@ -51,28 +79,28 @@ export const EditBook = (props: EditBookProps) => {
                 <FormControl component="form" onSubmit={onSubmit}>
                     <TextField
                         name="isbn"
-                        value={book.isbn}
+                        value={bookToUpdate?.isbn}
                         onChange={onChange}
-                        placeholder="ISBN"
+                        placeholder={bookToUpdate?.isbn}
                         style={{marginBottom: '10px'}}
                     />
                     <TextField
                         name="title"
-                        value={book.title}
+                        value={bookToUpdate?.title}
                         onChange={onChange}
-                        placeholder="Title"
+                        placeholder={bookToUpdate?.title}
                         style={{marginBottom: '10px'}}
                     />
                     <TextField
                         name="author"
-                        value={book.author}
+                        value={bookToUpdate?.author}
                         onChange={onChange}
-                        placeholder="Author"
+                        placeholder={bookToUpdate?.author}
                         style={{marginBottom: '10px'}}
                     />
                     <Select
                         id="demo-simple-select"
-                        value={book.art}
+                        value={bookToUpdate?.art}
                         label="BookArt"
                         name="art"
                         onChange={handleChange}

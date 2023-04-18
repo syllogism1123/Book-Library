@@ -10,10 +10,10 @@ type AddBookProps = {
 
 export const AddBook = (props: AddBookProps) => {
 
-    const initialState: BookModel = {
+    const initial: BookModel = {
         isbn: "", title: "", author: "", art: BookArt.EBOOK
     }
-    const [book, setBook] = useState<BookModel>(initialState);
+    const [book, setBook] = useState<BookModel>(initial);
 
     const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ export const AddBook = (props: AddBookProps) => {
         if (book.isbn && book.author && book.title && book.art) {
             event.preventDefault();
             props.addBook(book)
-            setBook(initialState);
+            setBook(initial);
         }
         navigate('/books')
     }

@@ -17,6 +17,9 @@ export default function BookCard(props: BookCardProps) {
     const toDetail = () => {
         navi("/books/" + props.book.id)
     }
+    const toEdit = () => {
+        navi("/books/edit/" + props.book.id)
+    }
 
     return (
 
@@ -32,7 +35,7 @@ export default function BookCard(props: BookCardProps) {
 
             </CardContent>
             <Button variant="outlined" onClick={toDetail}>Detail</Button>
-            <Button variant="outlined" onClick={toDetail}>Edit</Button>
+            <Button variant="outlined" onClick={toEdit}>Edit</Button>
             <Button variant="contained" onClick={onClick}>Delete</Button>
         </Card>
 

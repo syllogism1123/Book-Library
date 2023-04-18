@@ -5,6 +5,8 @@ import {Book, BookModel} from "../component/BookModel";
 export const useBook = () => {
     const [books, setBooks] = useState<Book[]>([]);
     const [text, setText] = useState<string>('');
+
+
     const onTextChange = (text: string) => {
         setText(text);
     }
@@ -75,7 +77,6 @@ export const useBook = () => {
             })
     }
 
-
     const deleteBook = (id: string) => {
 
         const authToken = localStorage.getItem('authToken');
@@ -99,6 +100,15 @@ export const useBook = () => {
         loadAllBooks()
     }, []);
 
-    return {onTextChange,text, filteredBooks, addBook, loadAllBooks, deleteBook, updateBook};
+    return {
+        onTextChange,
+        text,
+        filteredBooks,
+        addBook,
+        loadAllBooks,
+        deleteBook,
+        updateBook,
+
+    };
 
 }
