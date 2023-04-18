@@ -32,7 +32,6 @@ export default function useUser() {
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true,
-
         }).then((response) => {
             setUser(response.data)
         }).catch(error => {
