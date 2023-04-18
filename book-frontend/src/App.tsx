@@ -10,6 +10,7 @@ import {LoginPage} from "./component/LoginPage";
 import {BookDetails} from "./component/BookDetails";
 import useUser from "./hook/useUser";
 import {useBook} from "./hook/useBook";
+import {EditBook} from "./component/EditBook";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                            element={<AddBook addBook={addBook}/>}>
                     </Route>
                     <Route path="/books/:id" element={<BookDetails/>}/>
+                    <Route path="/books/edit/:id" element={<EditBook updateBook={updateBook}/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
