@@ -11,10 +11,11 @@ import {BookDetails} from "./component/BookDetails";
 import useUser from "./hook/useUser";
 import {useBook} from "./hook/useBook";
 import {EditBook} from "./component/EditBook";
+import {LogoutPage} from "./component/LogoutPage";
 
 
 function App() {
-    const {user,login} = useUser();
+    const {login, logout} = useUser();
     const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook} = useBook();
     return (
         <div className="App">
@@ -25,6 +26,8 @@ function App() {
                     <Route path="/" element={<Navigate to="/books"/>}>
                     </Route>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}>
+                    </Route>
+                    <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
                     </Route>
                     <Route path='/books' element={
                         <div>

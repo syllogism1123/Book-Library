@@ -10,6 +10,7 @@ export default function Header() {
             <Typography>
                 <Link to='/books'>Book Library</Link>
                 <Link to='/login'>login</Link>
+                <Link to='/logout'>logout</Link>
                 <NavLink to='/books/add'>Add</NavLink>
             </Typography>
         </div>

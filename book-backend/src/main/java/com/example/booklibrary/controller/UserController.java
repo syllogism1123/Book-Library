@@ -2,6 +2,7 @@ package com.example.booklibrary.controller;
 
 import com.example.booklibrary.model.MongoUser;
 import com.example.booklibrary.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +34,10 @@ public class UserController {
         userService.addMongoUser(mongoUser);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
+    @PostMapping("/logout")
+    public void logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        SecurityContextHolder.clearContext();
+    }
 
 }
