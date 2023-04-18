@@ -23,9 +23,9 @@ function App() {
             <BrowserRouter>
                 <Header/>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/books"/>}>
-                    </Route>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}>
+                    </Route>
+                    <Route path="/" element={<Navigate to="/books"/>}>
                     </Route>
                     <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
                     </Route>

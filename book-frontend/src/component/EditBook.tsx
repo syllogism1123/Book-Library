@@ -66,9 +66,12 @@ export const EditBook = (props: EditBookProps) => {
     }
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        props.updateBook(bookToUpdate)
-        navigate('/books')
+        if (bookToUpdate.isbn && bookToUpdate.author && bookToUpdate.title && bookToUpdate.art) {
+            event.preventDefault();
+            props.updateBook(bookToUpdate)
+            navigate('/books')
+        }
+
     }
 
 

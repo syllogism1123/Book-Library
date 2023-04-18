@@ -31,7 +31,7 @@ export default function BookCard(props: BookCardProps) {
                 <Typography className="p-font">{props.book.isbn}</Typography>
                 <Typography className="p-font">{props.book.title}</Typography>
                 <Typography className="p-font">{props.book.author}</Typography>
-                <Typography className="p-font">{props.book.instant.toLocaleString()}</Typography>
+
 
             </CardContent>
             <Button variant="outlined" onClick={toDetail}>Detail</Button>

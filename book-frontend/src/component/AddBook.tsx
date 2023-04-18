@@ -40,8 +40,9 @@ export const AddBook = (props: AddBookProps) => {
             event.preventDefault();
             props.addBook(book)
             setBook(initial);
+            navigate('/books')
         }
-        navigate('/books')
+
     }
 
 

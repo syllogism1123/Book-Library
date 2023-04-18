@@ -37,7 +37,8 @@ export const BookDetails = () => {
             <Typography className="p-font">ISBN: {book?.isbn}</Typography>
             <Typography className="p-font">Title: {book?.title}</Typography>
             <Typography className="p-font">Author: {book?.author}</Typography>
-            <Typography className="p-font">BookArt: {book?.instant.toLocaleDateString()}</Typography>
+            <Typography
+                className="p-font">Date: {book?.instant && new Date(book.instant).toLocaleString()}</Typography>
             <Typography className="p-font">BookArt: {book?.art}</Typography>
         </div>
     );
