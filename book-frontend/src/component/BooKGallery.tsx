@@ -1,6 +1,6 @@
 import BookCard from "./BookCard";
-import {BookArt} from "./BookArt";
-import {Book} from "./BookModel";
+import {BookArt} from "../model/BookArt";
+import {Book} from "../model/BookModel";
 
 type BookGalleryProps = {
     books: Book[],

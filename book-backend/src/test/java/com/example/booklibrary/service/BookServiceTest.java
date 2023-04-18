@@ -8,6 +8,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +60,7 @@ class BookServiceTest {
         Book book = new Book(id,
                 "9781617294945",
                 "Spring in Action",
-                "Craig Walls",
+                "Craig Walls", Instant.now(),
                 SOFTCOVER);
         when(bookRepo.findById(id)).thenReturn(Optional.of(book));
 
@@ -90,13 +92,13 @@ class BookServiceTest {
         Book book = new Book(id,
                 "9781617294945",
                 "Spring in Action",
-                "Craig Walls",
+                "Craig Walls", Instant.now(),
                 SOFTCOVER);
 
         Book updatedBook = new Book(id,
                 "9781617294945",
                 "Spring in Action",
-                "Craig Walls",
+                "Craig Walls", Instant.now(),
                 EBOOK);
 
         when(bookRepo.findById(id)).thenReturn(Optional.of(book));

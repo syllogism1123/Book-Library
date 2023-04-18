@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Book, BookModel} from "../component/BookModel";
+import {Book, BookModel} from "../model/BookModel";
 
 export const useBook = () => {
     const [books, setBooks] = useState<Book[]>([]);

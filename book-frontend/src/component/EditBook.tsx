@@ -1,7 +1,7 @@
-import {Book} from "./BookModel";
+import {Book} from "../model/BookModel";
 import {Button, Card, FormControl, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useEffect, useState} from "react";
-import {BookArt} from "./BookArt";
+import {BookArt} from "../model/BookArt";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ type EditBookProps = {
 
 export const EditBook = (props: EditBookProps) => {
     const initial: Book = {
-        id: "", isbn: "", title: "", author: "", art: BookArt.EBOOK
+        id: "", isbn: "", title: "", author: "", instant: new Date(), art: BookArt.EBOOK
     }
     const [bookToUpdate, setBookToUpdate] = useState<Book>(initial);
     const {id} = useParams<{ id: string }>();
@@ -46,7 +46,7 @@ export const EditBook = (props: EditBookProps) => {
         if (id) {
             setBookToUpdate({
                 ...bookToUpdate,
-                id: id,
+                id: id, instant: new Date(),
                 art: selectedBookArt
             });
         }
@@ -59,12 +59,11 @@ export const EditBook = (props: EditBookProps) => {
         if (id) {
             setBookToUpdate({
                 ...bookToUpdate,
-                id: id,
+                id: id, instant: new Date(),
                 [targetName]: value
             })
         }
     }
-
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -117,6 +116,4 @@ export const EditBook = (props: EditBookProps) => {
             </Card>
         </div>
     );
-
-
 }

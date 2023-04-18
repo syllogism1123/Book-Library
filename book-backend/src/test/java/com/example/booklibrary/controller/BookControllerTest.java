@@ -14,6 +14,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import static com.example.booklibrary.model.BookArt.SOFTCOVER;
@@ -24,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
-public class BookControllerTest {
+class BookControllerTest {
     @Autowired
     private MockMvc mvc;
     @Autowired
@@ -37,9 +39,8 @@ public class BookControllerTest {
         id = UUID.randomUUID().toString();
         book = new Book(id, "9781260463415",
                 "Java: The Complete Reference",
-                "Herbert Schildt",
+                "Herbert Schildt", Instant.now(),
                 SOFTCOVER);
-
     }
 
     @Test

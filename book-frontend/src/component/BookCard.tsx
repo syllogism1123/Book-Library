@@ -1,6 +1,6 @@
 import {Button, Card, CardContent, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {Book} from "./BookModel";
+import {Book} from "../model/BookModel";
 
 type BookCardProps = {
     book: Book,
@@ -31,6 +31,7 @@ export default function BookCard(props: BookCardProps) {
                 <Typography className="p-font">{props.book.isbn}</Typography>
                 <Typography className="p-font">{props.book.title}</Typography>
                 <Typography className="p-font">{props.book.author}</Typography>
+                <Typography className="p-font">{props.book.instant.toLocaleString()}</Typography>
 
             </CardContent>
             <Button variant="outlined" onClick={toDetail}>Detail</Button>

@@ -1,6 +1,6 @@
 import {Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {BookModel} from "./BookModel";
+import {BookModel} from "../model/BookModel";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 
@@ -37,6 +37,7 @@ export const BookDetails = () => {
             <Typography className="p-font">ISBN: {book?.isbn}</Typography>
             <Typography className="p-font">Title: {book?.title}</Typography>
             <Typography className="p-font">Author: {book?.author}</Typography>
+            <Typography className="p-font">BookArt: {book?.instant.toLocaleDateString()}</Typography>
             <Typography className="p-font">BookArt: {book?.art}</Typography>
         </div>
     );
