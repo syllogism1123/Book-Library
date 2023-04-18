@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Header from "./component/Header";
 import BooKGallery from "./component/BooKGallery";
-import {SearchBar} from "./component/SearchBar";
 import {Alert} from "@mui/material";
 import {AddBook} from "./component/AddBook";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
@@ -12,6 +11,7 @@ import useUser from "./hook/useUser";
 import {useBook} from "./hook/useBook";
 import {EditBook} from "./component/EditBook";
 import {LogoutPage} from "./component/LogoutPage";
+import PrimarySearchAppBar from "./component/PrimarySearchAppBar";
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
     const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook} = useBook();
     return (
         <div className="App">
-
+            <PrimarySearchAppBar text={text} onTextChange={onTextChange}/>
             <BrowserRouter>
                 <Header/>
                 <Routes>
@@ -31,7 +31,6 @@ function App() {
                     </Route>
                     <Route path='/books' element={
                         <div>
-                            <SearchBar text={text} onTextChange={onTextChange}/>
                             {filteredBooks.length > 0 ?
                                 <BooKGallery books={filteredBooks}
                                              addBook={addBook} updateBook={updateBook}

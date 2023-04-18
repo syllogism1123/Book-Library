@@ -8,6 +8,7 @@ type Props = {
 export const LogoutPage = (props: Props) => {
 
     const navigate = useNavigate();
+
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         props.onLogout().then(() => {
@@ -18,7 +19,7 @@ export const LogoutPage = (props: Props) => {
 
     return (
         <FormControl component="form" onSubmit={onSubmit}>
-            <Button variant="contained" type="submit" size="medium">Logout</Button>
+            <Button variant="contained" type="submit" size="large">Logout</Button>
         </FormControl>
     )
 
