@@ -14,7 +14,7 @@ import {EditBook} from "./component/EditBook";
 
 
 function App() {
-    const {login} = useUser();
+    const {user,login} = useUser();
     const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook} = useBook();
     return (
         <div className="App">

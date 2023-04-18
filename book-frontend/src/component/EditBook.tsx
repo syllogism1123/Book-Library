@@ -105,10 +105,10 @@ export const EditBook = (props: EditBookProps) => {
                         name="art"
                         onChange={handleChange}
                     >
-                        <MenuItem value={BookArt.EBOOK}>EBOOK</MenuItem>
-                        <MenuItem value={BookArt.HARDCOVER}>HARDCOVER</MenuItem>
-                        <MenuItem value={BookArt.SOFTCOVER}>SOFTCOVER</MenuItem>
-                        <MenuItem value={BookArt.AUDIOBOOK}>AUDIOBOOK</MenuItem>
+                        <MenuItem value={BookArt.EBOOK} style={{backgroundColor: 'cyan'}}>EBOOK</MenuItem>
+                        <MenuItem value={BookArt.HARDCOVER} style={{backgroundColor: 'cyan'}}>HARDCOVER</MenuItem>
+                        <MenuItem value={BookArt.SOFTCOVER} style={{backgroundColor: 'cyan'}}>SOFTCOVER</MenuItem>
+                        <MenuItem value={BookArt.AUDIOBOOK} style={{backgroundColor: 'cyan'}}>AUDIOBOOK</MenuItem>
                     </Select>
                     <Button variant="contained" type="submit" size="small">
                         Save
