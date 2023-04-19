@@ -1,0 +1,23 @@
+
+O
+book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
+I
+book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
+K
+book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
+J
+book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
+ƒ
+Sbook-backend/src/test/java/com/example/booklibrary/BooklibraryApplicationTests.java,b\6\b69c0104a1541f7111c57a5ca4dd2b3078c84c59
+S
+#book-frontend/src/model/BookArt.tsx,c\2\c2c4da44711e0c6d5df1bd7f9cf624283c1276b9
+~
+Nbook-backend/src/main/java/com/example/booklibrary/BookLibraryApplication.java,9\9\99b2d4f09286e95b9a92d976ef6601ba68e8a0d0
+Q
+!book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
+[
++book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
+U
+%book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043
+…
+Ubook-backend/src/main/java/com/example/booklibrary/config/ReactRoutingForwarding.java,9\6\96804fb2f7dd1da3e9915c804b0277ede01a0be0

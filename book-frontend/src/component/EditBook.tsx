@@ -83,21 +83,21 @@ export const EditBook = (props: EditBookProps) => {
                         name="isbn"
                         value={bookToUpdate?.isbn}
                         onChange={onChange}
-                        placeholder={bookToUpdate?.isbn}
+                        placeholder="ISBN"
                         style={{marginBottom: '10px'}}
                     />
                     <TextField
                         name="title"
                         value={bookToUpdate?.title}
                         onChange={onChange}
-                        placeholder={bookToUpdate?.title}
+                        placeholder="Title"
                         style={{marginBottom: '10px'}}
                     />
                     <TextField
                         name="author"
                         value={bookToUpdate?.author}
                         onChange={onChange}
-                        placeholder={bookToUpdate?.author}
+                        placeholder="Author"
                         style={{marginBottom: '10px'}}
                     />
                     <Select

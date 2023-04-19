@@ -35,6 +35,12 @@ public class BookController {
         return new ResponseEntity<>(service.getBookById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<List<Book>> getBookByUserId(@PathVariable String userId) {
+        return new ResponseEntity<>(service.getBooksByUserId(userId), HttpStatus.OK);
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
         return new ResponseEntity<>(service.updateBookById(id, updatedBook), HttpStatus.OK);

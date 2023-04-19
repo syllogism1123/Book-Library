@@ -15,7 +15,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.UUID;
 
 import static com.example.booklibrary.model.BookArt.SOFTCOVER;
@@ -37,10 +36,11 @@ class BookControllerTest {
     @BeforeEach
     void setup() {
         id = UUID.randomUUID().toString();
+        String userId = UUID.randomUUID().toString();
         book = new Book(id, "9781260463415",
                 "Java: The Complete Reference",
                 "Herbert Schildt", Instant.now(),
-                SOFTCOVER);
+                SOFTCOVER, userId);
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.example.booklibrary.service;
 
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.repository.BookRepository;
+import com.example.booklibrary.repository.MongoUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,33 +18,37 @@ import java.util.UUID;
 import static com.example.booklibrary.model.BookArt.EBOOK;
 import static com.example.booklibrary.model.BookArt.SOFTCOVER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
     private BookService service;
     @Mock
     private BookRepository bookRepo;
+    @Mock
+    private MongoUserRepository mongoUserRepo;
 
     @BeforeEach
     void setup() {
-        service = new BookService(bookRepo);
+        service = new BookService(bookRepo, mongoUserRepo);
     }
 
 
     @Test
     void getAllBooks() {
+        String userId = UUID.randomUUID().toString();
         List<Book> books = new ArrayList<>(List.of(
                 new Book(
                         "9781617294945",
                         "Spring in Action",
                         "Craig Walls",
-                        SOFTCOVER),
+                        SOFTCOVER, userId),
                 new Book(
                         "9780134685991",
                         "Effective Java",
                         "Joshua Bloch",
-                        EBOOK)));
+                        EBOOK, userId)));
         when(bookRepo.findAll()).thenReturn(books);
 
 
@@ -57,11 +61,12 @@ class BookServiceTest {
     @Test
     void getBookById() {
         String id = UUID.randomUUID().toString();
+        String userId = UUID.randomUUID().toString();
         Book book = new Book(id,
                 "9781617294945",
                 "Spring in Action",
                 "Craig Walls", Instant.now(),
-                SOFTCOVER);
+                SOFTCOVER, userId);
         when(bookRepo.findById(id)).thenReturn(Optional.of(book));
 
         Book actual = service.getBookById(id);
@@ -72,12 +77,12 @@ class BookServiceTest {
 
     @Test
     void addBook() {
-
+        String userId = UUID.randomUUID().toString();
         Book book = new Book(
                 "9781260463415",
                 "Java: The Complete Reference",
                 "Herbert Schildt",
-                SOFTCOVER);
+                SOFTCOVER, userId);
         when(bookRepo.save(book)).thenReturn(book);
 
         Book actual = service.addBook(book);
@@ -88,18 +93,20 @@ class BookServiceTest {
 
     @Test
     void updateBookById() {
-        String id = "123";
+        String id = UUID.randomUUID().toString();
+
+        String userId = UUID.randomUUID().toString();
         Book book = new Book(id,
                 "9781617294945",
                 "Spring in Action",
                 "Craig Walls", Instant.now(),
-                SOFTCOVER);
+                SOFTCOVER, userId);
 
         Book updatedBook = new Book(id,
                 "9781617294945",
                 "Spring in Action",
                 "Craig Walls", Instant.now(),
-                EBOOK);
+                EBOOK, userId);
 
         when(bookRepo.findById(id)).thenReturn(Optional.of(book));
 
