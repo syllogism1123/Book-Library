@@ -12,12 +12,12 @@ public record Book(@MongoId String id,
                    Instant instant,
                    BookArt art,
                    String userId) {
-    public Book(String isbn, String title, String author, Instant instant, BookArt art) {
+    public Book(String isbn, String title, String author, BookArt art) {
         this(null,
                 isbn,
                 title,
                 author,
-                instant,
+                null,
                 art, null);
     }
 

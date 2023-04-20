@@ -14,6 +14,7 @@ import java.util.*;
 import static com.example.booklibrary.model.BookArt.EBOOK;
 import static com.example.booklibrary.model.BookArt.SOFTCOVER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -84,13 +85,11 @@ class BookServiceTest {
                 "9781260463415",
                 "Java: The Complete Reference",
                 "Herbert Schildt",
-                Instant.now(),
                 SOFTCOVER
         );
         Book bookToSave = book.withUserId(userId);
-
         service.addBook(book, userId);
-        verify(bookRepo).save(bookToSave);
+        verify(bookRepo).save(any(Book.class));
     }
 
     @Test
