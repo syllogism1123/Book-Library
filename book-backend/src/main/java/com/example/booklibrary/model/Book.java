@@ -12,18 +12,18 @@ public record Book(@MongoId String id,
                    Instant instant,
                    BookArt art,
                    String userId) {
-    public Book(String isbn, String title, String author, Instant instant, BookArt art, String userId) {
+    public Book(String isbn, String title, String author, Instant instant, BookArt art) {
         this(null,
                 isbn,
                 title,
                 author,
                 instant,
-                art,
-                userId);
+                art, null);
     }
 
+
     public Book withUserId(String userId) {
-        return new Book(isbn, title, author, Instant.now(), art, userId);
+        return new Book(null, isbn, title, author, Instant.now(), art, userId);
     }
 }
 
