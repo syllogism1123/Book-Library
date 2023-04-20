@@ -19,5 +19,3 @@ Nbook-backend/src/main/java/com/example/booklibrary/BookLibraryApplication.java
 +book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
 U
 %book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043
-…
-Ubook-backend/src/main/java/com/example/booklibrary/config/ReactRoutingForwarding.java,9\6\96804fb2f7dd1da3e9915c804b0277ede01a0be0

@@ -17,11 +17,9 @@ public class BookService {
 
     }
 
-
-      public List<Book> getAllBooksByUserId(String id) {
+    public List<Book> getAllBooksByUserId(String id) {
         return bookRepos.findByUserId(id);
     }
-
 
 
     public Book addBook(Book book, String userId) {
