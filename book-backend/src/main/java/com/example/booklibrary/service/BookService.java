@@ -23,8 +23,8 @@ public class BookService {
 
 
     public Book addBook(Book book, String userId) {
-        book = book.withUserId(userId);
-        return bookRepos.save(book);
+       Book bookToSave = book.withUserId(userId);
+        return bookRepos.save(bookToSave);
     }
 
     public Book getBookById(String id) {

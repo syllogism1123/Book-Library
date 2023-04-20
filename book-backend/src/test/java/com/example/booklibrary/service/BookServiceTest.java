@@ -90,7 +90,6 @@ class BookServiceTest {
         Book bookToSave = book.withUserId(userId);
 
         service.addBook(book, userId);
-
         verify(bookRepo).save(bookToSave);
     }
 
