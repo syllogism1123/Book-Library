@@ -84,11 +84,9 @@ class BookServiceTest {
                 "9781260463415",
                 "Java: The Complete Reference",
                 "Herbert Schildt",
-                Instant.now(),
                 SOFTCOVER
         );
         Book bookToSave = book.withUserId(userId);
-
         service.addBook(book, userId);
         verify(bookRepo).save(bookToSave);
     }
