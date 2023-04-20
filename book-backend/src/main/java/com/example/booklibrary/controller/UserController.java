@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/me")
     public String getMe() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+        return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
     }
 
     @PostMapping("/login")

@@ -21,5 +21,9 @@ public record Book(@MongoId String id,
                 art,
                 userId);
     }
+
+    public Book withUserId(String userId) {
+        return new Book(isbn, title, author, art, userId);
+    }
 }
 

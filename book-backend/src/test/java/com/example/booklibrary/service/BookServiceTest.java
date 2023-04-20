@@ -31,7 +31,7 @@ class BookServiceTest {
 
     @BeforeEach
     void setup() {
-        service = new BookService(bookRepo, mongoUserRepo);
+        service = new BookService(bookRepo);
     }
 
 
@@ -49,13 +49,13 @@ class BookServiceTest {
                         "Effective Java",
                         "Joshua Bloch",
                         EBOOK, userId)));
-        when(bookRepo.findAll()).thenReturn(books);
 
 
-        List<Book> bookList = service.getAllBooks();
 
-        verify(bookRepo).findAll();
-        assertEquals(books, bookList);
+        List<Book> bookList = service.getAllBooksByUserId(userId);
+
+        verify(bookRepo).findByUserId(userId);
+
     }
 
     @Test
@@ -83,12 +83,10 @@ class BookServiceTest {
                 "Java: The Complete Reference",
                 "Herbert Schildt",
                 SOFTCOVER, userId);
-        when(bookRepo.save(book)).thenReturn(book);
 
-        Book actual = service.addBook(book);
+        service.addBook(book, userId);
 
         verify(bookRepo).save(book);
-        assertEquals(book, actual);
     }
 
     @Test

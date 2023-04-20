@@ -2,7 +2,6 @@ package com.example.booklibrary.service;
 
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.repository.BookRepository;
-import com.example.booklibrary.repository.MongoUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,22 +10,22 @@ import java.util.NoSuchElementException;
 @Service
 public class BookService {
     private final BookRepository bookRepos;
-    private final MongoUserRepository mongoUserRepos;
 
-    public BookService(BookRepository bookRepos, MongoUserRepository mongoUserRepos) {
+
+    public BookService(BookRepository bookRepos) {
         this.bookRepos = bookRepos;
-        this.mongoUserRepos = mongoUserRepos;
+
     }
 
-    public List<Book> getAllBooks() {
-        return bookRepos.findAll();
+
+      public List<Book> getAllBooksByUserId(String id) {
+        return bookRepos.findByUserId(id);
     }
 
-    public List<Book> getBooksByUserId(String userId) {
-        return bookRepos.findByUserId(userId);
-    }
 
-    public Book addBook(Book book) {
+
+    public Book addBook(Book book, String userId) {
+        book = book.withUserId(userId);
         return bookRepos.save(book);
     }
 
