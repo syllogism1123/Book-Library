@@ -2,7 +2,6 @@ package com.example.booklibrary.service;
 
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.repository.BookRepository;
-import com.example.booklibrary.repository.MongoUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,8 +25,6 @@ class BookServiceTest {
     private BookService service;
     @Mock
     private BookRepository bookRepo;
-    @Mock
-    private MongoUserRepository mongoUserRepo;
 
     @BeforeEach
     void setup() {
@@ -49,13 +46,13 @@ class BookServiceTest {
                         "Effective Java",
                         "Joshua Bloch",
                         EBOOK, userId)));
+        when(bookRepo.findByUserId(userId)).thenReturn(books);
 
 
-
-        List<Book> bookList = service.getAllBooksByUserId(userId);
+        List<Book> actual = service.getAllBooksByUserId(userId);
 
         verify(bookRepo).findByUserId(userId);
-
+        assertEquals(books, actual);
     }
 
     @Test
