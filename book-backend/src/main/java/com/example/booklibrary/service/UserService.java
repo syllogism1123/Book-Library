@@ -15,11 +15,15 @@ public class UserService {
         this.encoder = encoder;
     }
 
-    public MongoUser addMongoUser(MongoUser mongoUser) {
-        String username = mongoUser.username();
-        String password = mongoUser.password();
-        String encodedPassword = encoder.encode(password);
-        MongoUser encodedUser = new MongoUser(username, encodedPassword);
-        return mongoUserRepository.save(encodedUser);
+    public MongoUser createMongoUser(String username, String password, String firstname, String lastname) {
+
+        if (mongoUserRepository.findMongoUserByUsername(username).isPresent()) {
+            throw new IllegalArgumentException("The username already exists.");
+        } else {
+            String encodedPassword = encoder.encode(password);
+            MongoUser encodedUser = new MongoUser(username, encodedPassword, firstname, lastname);
+            return mongoUserRepository.save(encodedUser);
+        }
     }
+
 }

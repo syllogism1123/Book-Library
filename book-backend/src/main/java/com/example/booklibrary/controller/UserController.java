@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequestMapping("/api/users")
 
 public class UserController {
@@ -31,9 +31,11 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<MongoUser> createUser(@RequestBody MongoUser mongoUser) {
-        userService.addMongoUser(mongoUser);
+        userService.createMongoUser(
+                mongoUser.username(), mongoUser.password(), mongoUser.firstname(), mongoUser.lastname());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @PostMapping("/logout")
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();
