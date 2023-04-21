@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()))
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/users/**").permitAll()
+                .requestMatchers("/api/users/me").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and().build();

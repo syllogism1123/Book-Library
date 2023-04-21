@@ -1,16 +1,19 @@
-import {Typography} from "@mui/material";
-import {Link, NavLink} from "react-router-dom";
+import {Breadcrumbs, Typography} from "@mui/material";
+import {Link} from "react-router-dom";
+import React from "react";
 
 export default function Header() {
     return (
         <div>
-            <Typography variant="h2" style={{color: "brown"}}>
-                Book Library
-            </Typography>
-            <Typography>
+            <Breadcrumbs maxItems={4} aria-label="breadcrumb" className='link'>
                 <Link to='/books'>Book Library</Link>
-                <Link to='/login'>login</Link>
-                <NavLink to='/books/add'>Add</NavLink>
+                <Link to='/login'>Login</Link>
+                <Link to='/logout'>Logout</Link>
+                <Link to='/books/add'>Add a new Book</Link>
+                <Typography color="text.primary"></Typography>
+            </Breadcrumbs>
+            <Typography variant="h2" style={{color: "brown"}}>
+                BOOK LIBRARY
             </Typography>
         </div>
     )

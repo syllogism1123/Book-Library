@@ -31,7 +31,10 @@
     justify-content: center;
 
 }
-
+.link {
+    justify-content:right;
+    display: flex;
+}
 
 
 

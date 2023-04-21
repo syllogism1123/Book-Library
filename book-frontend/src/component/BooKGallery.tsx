@@ -1,12 +1,12 @@
 import BookCard from "./BookCard";
-import {BookArt} from "./BookArt";
-import {Book} from "./BookModel";
+import {BookArt} from "../model/BookArt";
+import {Book} from "../model/BookModel";
 
 type BookGalleryProps = {
     books: Book[],
     addBook: (book: Book) => void;
     updateBook: (book: Book) => void;
-    deleteBook: (isbn: string) => void;
+    deleteBook: (id: string) => void;
 }
 
 export default function BooKGallery(props: BookGalleryProps) {

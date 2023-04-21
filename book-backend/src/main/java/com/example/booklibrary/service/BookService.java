@@ -11,16 +11,20 @@ import java.util.NoSuchElementException;
 public class BookService {
     private final BookRepository bookRepos;
 
+
     public BookService(BookRepository bookRepos) {
         this.bookRepos = bookRepos;
+
     }
 
-    public List<Book> getAllBooks() {
-        return bookRepos.findAll();
+    public List<Book> getAllBooksByUserId(String id) {
+        return bookRepos.findByUserId(id);
     }
 
-    public Book addBook(Book book) {
-        return bookRepos.save(book);
+
+    public Book addBook(Book book, String userId) {
+       Book bookToSave = book.withUserId(userId);
+        return bookRepos.save(bookToSave);
     }
 
     public Book getBookById(String id) {

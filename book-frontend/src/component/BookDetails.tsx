@@ -1,20 +1,13 @@
-import {BookModel} from "./BookModel";
 import {Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {BookModel} from "../model/BookModel";
 import {useParams} from "react-router-dom";
+import axios from "axios";
 
 
 export const BookDetails = () => {
     const [book, setBook] = useState<BookModel>()
-    const {id} = useParams<{ id: string }>()
-
-    useEffect(() => {
-        if (id) {
-            loadBookById(id)
-        }
-    }, [])
-
+    const {id} = useParams<{ id: string }>();
     const loadBookById = (id: string) => {
         const authToken = localStorage.getItem('authToken');
         axios.get('http://localhost:8080/api/books/' + id, {
@@ -32,15 +25,21 @@ export const BookDetails = () => {
                 console.error(error)
             })
     }
+    useEffect(() => {
+        if (id) {
+            loadBookById(id)
+        }
+    }, [])
+
 
     return (
         <div>
-            <Typography color="textSecondary">
-                <p className="p-font">{book?.isbn}</p>
-                <p className="p-font">{book?.title}</p>
-                <p className="p-font">{book?.author}</p>
-                <p className="p-font">{book?.art}</p>
-            </Typography>
+            <Typography className="p-font">ISBN: {book?.isbn}</Typography>
+            <Typography className="p-font">Title: {book?.title}</Typography>
+            <Typography className="p-font">Author: {book?.author}</Typography>
+            <Typography
+                className="p-font">Date: {book?.instant && new Date(book.instant).toLocaleString()}</Typography>
+            <Typography className="p-font">BookArt: {book?.art}</Typography>
         </div>
     );
 }
