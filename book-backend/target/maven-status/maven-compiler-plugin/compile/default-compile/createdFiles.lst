@@ -1,0 +1,17 @@
+com\example\booklibrary\service\BookService.class
+com\example\booklibrary\controller\BookController.class
+com\example\booklibrary\exception\ApiError.class
+com\example\booklibrary\model\Book.class
+com\example\booklibrary\model\MongoUserDTO.class
+com\example\booklibrary\config\ReactRoutingForwarding$ReactRoutingPathResourceResolver.class
+com\example\booklibrary\controller\UserController.class
+com\example\booklibrary\security\SecurityConfig.class
+com\example\booklibrary\service\UserService.class
+com\example\booklibrary\exception\GlobalExceptionHandler.class
+com\example\booklibrary\repository\MongoUserRepository.class
+com\example\booklibrary\BookLibraryApplication.class
+com\example\booklibrary\model\MongoUser.class
+com\example\booklibrary\config\ReactRoutingForwarding.class
+com\example\booklibrary\model\BookArt.class
+com\example\booklibrary\service\MongoUserDetailsService.class
+com\example\booklibrary\repository\BookRepository.class
