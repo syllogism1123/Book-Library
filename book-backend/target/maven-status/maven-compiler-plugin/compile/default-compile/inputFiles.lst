@@ -1,0 +1,16 @@
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\service\UserService.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\repository\BookRepository.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\security\SecurityConfig.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\BookLibraryApplication.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\exception\ApiError.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\exception\GlobalExceptionHandler.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\config\ReactRoutingForwarding.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\controller\BookController.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\model\MongoUserDTO.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\model\MongoUser.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\controller\UserController.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\service\MongoUserDetailsService.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\repository\MongoUserRepository.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\model\Book.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\service\BookService.java
+C:\Users\klein\java\Book-Library\book-backend\src\main\java\com\example\booklibrary\model\BookArt.java
