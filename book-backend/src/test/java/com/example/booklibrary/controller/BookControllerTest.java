@@ -48,7 +48,7 @@ class BookControllerTest {
     void setup() {
         id = UUID.randomUUID().toString();
         String userId = UUID.randomUUID().toString();
-        MongoUser user = new MongoUser(userId, "user", "password");
+        MongoUser user = new MongoUser(userId, "user", "password", "firstname", "lastname");
         mongoTemplate.save(user);
         book = new Book(id, "9781260463415",
                 "Java: The Complete Reference",

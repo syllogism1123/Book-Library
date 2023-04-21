@@ -1,6 +1,7 @@
 package com.example.booklibrary.controller;
 
 import com.example.booklibrary.model.MongoUser;
+import com.example.booklibrary.model.MongoUserDTO;
 import com.example.booklibrary.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequestMapping("/api/users")
 
 public class UserController {
@@ -21,7 +22,7 @@ public class UserController {
 
     @GetMapping("/me")
     public String getMe() {
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @PostMapping("/login")
@@ -30,10 +31,11 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MongoUser> createUser(@RequestBody MongoUser mongoUser) {
-        userService.addMongoUser(mongoUser);
+    public ResponseEntity<MongoUser> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
+        userService.createMongoUser(mongoUserDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @PostMapping("/logout")
     public void logout(HttpSession httpSession) {
         httpSession.invalidate();

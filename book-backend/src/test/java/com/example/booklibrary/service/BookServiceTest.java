@@ -87,8 +87,9 @@ class BookServiceTest {
                 "Herbert Schildt",
                 SOFTCOVER
         );
-        Book bookToSave = book.withUserId(userId);
+
         service.addBook(book, userId);
+
         verify(bookRepo).save(any(Book.class));
     }
 
