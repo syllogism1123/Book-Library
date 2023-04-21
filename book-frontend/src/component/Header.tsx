@@ -10,7 +10,7 @@ export default function Header() {
                 <Link to='/login'>Login</Link>
                 <Link to='/logout'>Logout</Link>
                 <Link to='/signup'>Signup</Link>
-                <Link to='/books/add'>Add a new Book</Link>
+                <Link to='/books/add'>new Book</Link>
                 <Typography color="text.primary"></Typography>
             </Breadcrumbs>
             <Typography variant="h2" style={{color: "brown"}}>
