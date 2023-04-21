@@ -1,6 +1,7 @@
 package com.example.booklibrary.controller;
 
 import com.example.booklibrary.model.MongoUser;
+import com.example.booklibrary.model.MongoUserDTO;
 import com.example.booklibrary.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class UserController {
 
     @GetMapping("/me")
     public String getMe() {
-        return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @PostMapping("/login")
@@ -30,9 +31,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MongoUser> createUser(@RequestBody MongoUser mongoUser) {
-        userService.createMongoUser(
-                mongoUser.username(), mongoUser.password(), mongoUser.firstname(), mongoUser.lastname());
+    public ResponseEntity<MongoUser> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
+        userService.createMongoUser(mongoUserDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

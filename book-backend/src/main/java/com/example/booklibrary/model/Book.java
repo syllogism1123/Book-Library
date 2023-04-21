@@ -4,7 +4,6 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.time.Instant;
 
-
 public record Book(@MongoId String id,
                    String isbn,
                    String title,

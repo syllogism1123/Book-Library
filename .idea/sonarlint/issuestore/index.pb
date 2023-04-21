@@ -19,11 +19,5 @@ Q
 +book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
 U
 %book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043
-Ü
-Vbook-backend/src/main/java/com/example/booklibrary/repository/MongoUserRepository.java,9\0\904ecc5856bf124e352e9d4ddb9d6753a121234f
-Å
-Qbook-backend/src/main/java/com/example/booklibrary/repository/BookRepository.java,5\e\5ef2c8f521453e71689dd0a86822b3208350e467
 D
 book-backend/pom.xml,6\7\678b38964deea50792d08b2552ae7520497c965d
-Ö
-Ubook-backend/src/main/java/com/example/booklibrary/config/ReactRoutingForwarding.java,9\6\96804fb2f7dd1da3e9915c804b0277ede01a0be0

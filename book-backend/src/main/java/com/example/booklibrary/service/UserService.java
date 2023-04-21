@@ -1,6 +1,7 @@
 package com.example.booklibrary.service;
 
 import com.example.booklibrary.model.MongoUser;
+import com.example.booklibrary.model.MongoUserDTO;
 import com.example.booklibrary.repository.MongoUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,13 @@ public class UserService {
         this.encoder = encoder;
     }
 
-    public MongoUser createMongoUser(String username, String password, String firstname, String lastname) {
+    public MongoUser createMongoUser(MongoUserDTO mongoUserDTO) {
 
-        if (mongoUserRepository.findMongoUserByUsername(username).isPresent()) {
+        if (mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username()).isPresent()) {
             throw new IllegalArgumentException("The username already exists.");
         } else {
-            String encodedPassword = encoder.encode(password);
-            MongoUser encodedUser = new MongoUser(username, encodedPassword, firstname, lastname);
+            String encodedPassword = encoder.encode(mongoUserDTO.password());
+            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());
             return mongoUserRepository.save(encodedUser);
         }
     }
