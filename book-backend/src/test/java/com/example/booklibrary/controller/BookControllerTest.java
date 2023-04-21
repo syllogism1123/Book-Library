@@ -43,7 +43,6 @@ class BookControllerTest {
     private Book book;
     private String id;
 
-
     @BeforeEach
     void setup() {
         id = UUID.randomUUID().toString();

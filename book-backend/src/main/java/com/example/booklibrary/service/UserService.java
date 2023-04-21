@@ -32,5 +32,4 @@ public class UserService {
     public Optional<MongoUser> findUserByUsername(String username) {
         return mongoUserRepository.findMongoUserByUsername(username);
     }
-
 }
