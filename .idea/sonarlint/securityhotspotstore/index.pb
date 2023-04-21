@@ -7,8 +7,6 @@ K
 book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
-ƒ
-Sbook-backend/src/test/java/com/example/booklibrary/BooklibraryApplicationTests.java,b\6\b69c0104a1541f7111c57a5ca4dd2b3078c84c59
 S
 #book-frontend/src/model/BookArt.tsx,c\2\c2c4da44711e0c6d5df1bd7f9cf624283c1276b9
 ~

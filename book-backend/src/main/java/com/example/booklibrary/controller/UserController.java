@@ -20,11 +20,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/me")
-    public String getMe() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
-
     @PostMapping("/login")
     public String login() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
