@@ -45,7 +45,6 @@ export const useBook = () => {
         }).catch((error) => {
             console.error(error);
         })
-
     }
 
     const updateBook = async (book: Book) => {

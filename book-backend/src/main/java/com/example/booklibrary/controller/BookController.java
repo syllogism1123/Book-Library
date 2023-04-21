@@ -2,8 +2,8 @@ package com.example.booklibrary.controller;
 
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.model.MongoUser;
-import com.example.booklibrary.repository.MongoUserRepository;
 import com.example.booklibrary.service.BookService;
+import com.example.booklibrary.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,18 +18,17 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class BookController {
     private final BookService bookService;
-    private final MongoUserRepository mongoUserRepository;
+    private final UserService userService;
 
-    public BookController(BookService bookService, MongoUserRepository mongoUserRepository) {
+    public BookController(BookService bookService, UserService userService) {
         this.bookService = bookService;
-        this.mongoUserRepository = mongoUserRepository;
+        this.userService = userService;
     }
-
 
     @GetMapping()
     public ResponseEntity<List<Book>> getAllBooks() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Optional<MongoUser> user = mongoUserRepository.findMongoUserByUsername(username);
+        Optional<MongoUser> user = userService.findUserByUsername(username);
         if (user.isPresent()) {
             String userId = user.get().id();
             return new ResponseEntity<>(bookService.getAllBooksByUserId(userId), HttpStatus.OK);
@@ -40,7 +39,7 @@ public class BookController {
     @PostMapping()
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Optional<MongoUser> user = mongoUserRepository.findMongoUserByUsername(username);
+        Optional<MongoUser> user = userService.findUserByUsername(username);
         if (user.isPresent()) {
             String userId = user.get().id();
             return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
@@ -63,5 +62,4 @@ public class BookController {
         bookService.deleteBookById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

@@ -13,9 +13,5 @@ S
 #book-frontend/src/model/BookArt.tsx,c\2\c2c4da44711e0c6d5df1bd7f9cf624283c1276b9
 ~
 Nbook-backend/src/main/java/com/example/booklibrary/BookLibraryApplication.java,9\9\99b2d4f09286e95b9a92d976ef6601ba68e8a0d0
-Q
-!book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
 [
 +book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
-U
-%book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043

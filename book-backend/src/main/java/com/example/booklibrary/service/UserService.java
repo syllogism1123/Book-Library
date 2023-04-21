@@ -6,6 +6,8 @@ import com.example.booklibrary.repository.MongoUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final MongoUserRepository mongoUserRepository;
@@ -25,6 +27,10 @@ public class UserService {
             MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());
             return mongoUserRepository.save(encodedUser);
         }
+    }
+
+    public Optional<MongoUser> findUserByUsername(String username) {
+        return mongoUserRepository.findMongoUserByUsername(username);
     }
 
 }
