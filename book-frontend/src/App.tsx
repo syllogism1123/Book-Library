@@ -12,10 +12,12 @@ import {useBook} from "./hook/useBook";
 import {EditBook} from "./component/EditBook";
 import {LogoutPage} from "./component/LogoutPage";
 import PrimarySearchAppBar from "./component/PrimarySearchAppBar";
+import {SignUpPage} from "./component/SignUpPage";
+import ProtectedRoutes from "./component/ProtectedRoutes";
 
 
 function App() {
-    const {login, logout} = useUser();
+    const {user,login, logout, createUser} = useUser();
     const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook} = useBook();
     return (
         <div className="App">
@@ -25,6 +27,10 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}>
                     </Route>
+                    <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
+                    </Route>
+                    <Route element={<ProtectedRoutes user={user}/>}>
+
                     <Route path="/" element={<Navigate to="/books"/>}>
                     </Route>
                     <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
@@ -46,6 +52,7 @@ function App() {
                     </Route>
                     <Route path="/books/:id" element={<BookDetails/>}/>
                     <Route path="/books/edit/:id" element={<EditBook updateBook={updateBook}/>}/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </div>
