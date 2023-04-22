@@ -13,10 +13,6 @@ U
 %book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043
 X
 (book-frontend/src/component/EditBook.tsx,4\6\462e35cfc384fef4a01cde2b87173bc5721236e6
-W
-'book-frontend/src/component/AddBook.tsx,7\7\771fa8e04a9202a5e927baeea879763c2543bb2b
-_
-/book-frontend/src/component/ProtectedRoutes.tsx,9\3\93adb83ccc2cfd01f5042b5265b61b16e05fec4b
 V
 &book-frontend/src/component/Header.tsx,c\5\c5164781468ec1366d96ee5609fb1c1ed5004a7e
 z
@@ -45,16 +41,10 @@ Sbook-backend/src/test/java/com/example/booklibrary/BooklibraryApplicationTests.
 Wbook-backend/src/main/java/com/example/booklibrary/service/MongoUserDetailsService.java,e\8\e886c431ad2411c210f99ad2b5cbf0b2a4504112
 O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
-Q
-!book-frontend/src/hook/useBook.ts,e\9\e9614405f46eaf66152e92caca590a9f2ba3b5e0
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
 I
 book-frontend/src/App.tsx,5\b\5b6d17f3f5aa0717c69d17c94c231edb4b52226d
-Q
-!book-frontend/src/hook/useUser.ts,e\e\ee14eda2b37df2725e3a812927219b6ed8507f6d
-Y
-)book-frontend/src/component/LoginPage.tsx,8\8\88bd55c0f72a7d32dda0dfb1944337dfd6e91988
 S
 #.github/workflows/sonar-backend.yml,6\d\6da5a3f76934916b670a730d02c25e0b3bb44410
 :
