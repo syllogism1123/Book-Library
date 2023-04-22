@@ -15,10 +15,10 @@ export const useBook = () => {
         book.id.toLowerCase().includes(text.toLowerCase())
     );
 
-    const loadAllBooks = () => {
+    const loadAllBooks = async () => {
 
         const authToken = localStorage.getItem('authToken');
-        axios.get("http://localhost:8080/api/books", {
+        await axios.get("http://localhost:8080/api/books", {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
@@ -30,10 +30,10 @@ export const useBook = () => {
                 console.error(error);
             })
     };
-    const addBook = (newBook: BookModel) => {
+    const addBook = async (newBook: BookModel) => {
 
         const authToken = localStorage.getItem('authToken');
-        axios.post("http://localhost:8080/api/books", newBook, {
+        await axios.post("http://localhost:8080/api/books", newBook, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
@@ -47,10 +47,10 @@ export const useBook = () => {
         })
     }
 
-    const updateBook = (book: Book) => {
+    const updateBook = async (book: Book) => {
 
         const authToken = localStorage.getItem('authToken');
-        axios.put(`http://localhost:8080/api/books/${book.id}`, book, {
+        await axios.put(`http://localhost:8080/api/books/${book.id}`, book, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
@@ -73,10 +73,10 @@ export const useBook = () => {
             })
     }
 
-    const deleteBook = (id: string) => {
+    const deleteBook = async (id: string) => {
 
         const authToken = localStorage.getItem('authToken');
-        axios.delete(`http://localhost:8080/api/books/${id}`, {
+        await axios.delete(`http://localhost:8080/api/books/${id}`, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
@@ -91,7 +91,11 @@ export const useBook = () => {
     };
 
     useEffect(() => {
-        loadAllBooks()
+        loadAllBooks().catch(
+            (r) => {
+                console.error(r)
+            }
+        )
     }, []);
 
     return {

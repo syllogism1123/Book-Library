@@ -8,8 +8,8 @@ export default function useUser() {
      }*/
     const [user, setUser] = useState<User>();
     const [error, setError] = useState<boolean>();
-    const login = (username: string, password: string) => {
-        return axios.post("http://localhost:8080/api/users/login", undefined, {
+    const login = async (username: string, password: string) => {
+        return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
@@ -28,9 +28,9 @@ export default function useUser() {
         });
     }
 
-    const logout = () => {
+    const logout = async () => {
         const authToken = localStorage.getItem('authToken');
-        return axios.post("http://localhost:8080/api/users/logout", undefined, {
+        return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
@@ -44,9 +44,9 @@ export default function useUser() {
         })
     }
 
-    const createUser = (newUser: UserModel) => {
+    const createUser = async (newUser: UserModel) => {
         const authToken = localStorage.getItem('authToken');
-        axios.post("http://localhost:8080/api/users/signup", newUser, {
+        await axios.post("http://localhost:8080/api/users/signup", newUser, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
