@@ -1,4 +1,4 @@
 # Project exclude paths
 *.iml
 .idea
-/backend/src/main/resources/static/
+/book-backend/src/main/resources/static/

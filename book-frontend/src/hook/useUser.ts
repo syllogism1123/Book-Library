@@ -46,7 +46,7 @@ export default function useUser() {
 
     const createUser = async (newUser: UserModel) => {
         const authToken = localStorage.getItem('authToken');
-        await axios.post("http://localhost:8080/api/users/signup", newUser, {
+        return await axios.post("http://localhost:8080/api/users/signup", newUser, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
@@ -55,8 +55,10 @@ export default function useUser() {
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
+            return true;
         }).catch((error) => {
             console.error(error);
+            return false;
         })
     }
 

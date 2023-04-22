@@ -1,6 +1,7 @@
 import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Alert, Button, FormControl, TextField} from "@mui/material";
+import useUser from "../hook/useUser";
 
 type Props = {
     onLogin: (username: string, password: string) => Promise<boolean>
@@ -10,7 +11,7 @@ export const LoginPage = (props: Props) => {
 
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<boolean>();
+    const {error, setError} = useUser();
     const navigate = useNavigate();
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -18,7 +19,7 @@ export const LoginPage = (props: Props) => {
         props.onLogin(username, password).then((s) => {
             if (s) {
                 navigate("/books")
-           /*     window.location.reload();*/
+                /* window.location.reload();*/
             } else {
                 setError(true);
                 console.log("invalid")

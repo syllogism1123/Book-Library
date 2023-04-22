@@ -1,6 +1,4 @@
 
-I
-book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
 K
 book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
 S
@@ -47,11 +45,6 @@ I
 book-frontend/src/App.tsx,5\b\5b6d17f3f5aa0717c69d17c94c231edb4b52226d
 S
 #.github/workflows/sonar-backend.yml,6\d\6da5a3f76934916b670a730d02c25e0b3bb44410
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-H
-book-frontend/.gitignore,c\3\c38f84e3b16fe30a470abd3be1643e95ad64f481
 Å
 Qbook-backend/src/main/java/com/example/booklibrary/controller/BookController.java,e\9\e90f765656c99ee3b3174f51bfc8c9ba4ee9ff47
 Å

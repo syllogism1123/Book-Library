@@ -1,10 +1,11 @@
-import {Button, Card, FormControl, TextField} from "@mui/material";
+import {Alert, Button, Card, FormControl, TextField} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserModel} from "../model/UserModel";
+import useUser from "../hook/useUser";
 
 type createUserProps = {
-    createUser: (user: UserModel) => void;
+    createUser: (user: UserModel) => Promise<boolean>;
 }
 
 export const SignUpPage = (props: createUserProps) => {
@@ -13,7 +14,7 @@ export const SignUpPage = (props: createUserProps) => {
         username: "", password: "", firstname: "", lastname: ""
     }
     const [user, setUser] = useState<UserModel>(initial);
-
+    const {error, setError} = useUser();
     const navigate = useNavigate();
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -29,16 +30,21 @@ export const SignUpPage = (props: createUserProps) => {
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         if (user.username && user.password && user.firstname && user.lastname) {
             event.preventDefault();
-            props.createUser(user)
-            setUser(initial);
-            navigate('/books')
+            props.createUser(user).then((s) => {
+                if (s) {
+                    setUser(initial);
+                    navigate('/books');
+                } else {
+                    setError(true);
+                    console.log("invalid")
+                }
+            })
         }
-
     }
 
     return (
         <div className="form">
-            <Card variant="outlined" style={{backgroundColor: 'cyan'}}>
+            <Card variant="outlined" style={{backgroundColor: 'cyan'}} className="card">
                 <FormControl component="form" onSubmit={onSubmit}>
                     <TextField
                         name="username"
@@ -76,6 +82,11 @@ export const SignUpPage = (props: createUserProps) => {
                         Sign Up
                     </Button>
                 </FormControl>
+                {error &&
+                    <Alert severity="error" className="no-book-found">
+                        <h3>The username already exists!</h3>
+                    </Alert>
+                }
             </Card>
         </div>
     );
