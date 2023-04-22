@@ -9,9 +9,6 @@ S
 Nbook-backend/src/main/java/com/example/booklibrary/BookLibraryApplication.java,9\9\99b2d4f09286e95b9a92d976ef6601ba68e8a0d0
 [
 +book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 U
 %book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043
 X
