@@ -20,10 +20,12 @@ export default function useUser() {
                 password
             }
         }).then((response) => {
-            setUser(response.data)
+            setUser(response.data);
+            return true;
         }).catch(error => {
             console.error(error);
-        })
+            return false;
+        });
     }
 
     const logout = async () => {

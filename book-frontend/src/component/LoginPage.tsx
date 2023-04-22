@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {Button, FormControl, TextField} from "@mui/material";
 
 type Props = {
-    onLogin: (username: string, password: string) => Promise<void>
+    onLogin: (username: string, password: string) => Promise<boolean>
 }
 
 export const LoginPage = (props: Props) => {
@@ -14,15 +14,19 @@ export const LoginPage = (props: Props) => {
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        props.onLogin(username, password).then(() => {
-            navigate("/books")
-            window.location.reload();
+        props.onLogin(username, password).then((s) => {
+            if (s) {
+                navigate("/books")
+                window.location.reload();
+            }else{console.log("invalid")}
+
         })
     }
 
     return (
         <FormControl component="form" onSubmit={onSubmit}>
             <TextField
+                name='username'
                 type="text"
                 value={username}
                 placeholder='username'
@@ -30,6 +34,7 @@ export const LoginPage = (props: Props) => {
                 size="small"
                 onChange={(e) => setUsername(e.target.value)}/>
             <TextField
+                name='password'
                 type="password"
                 value={password}
                 placeholder='password'
