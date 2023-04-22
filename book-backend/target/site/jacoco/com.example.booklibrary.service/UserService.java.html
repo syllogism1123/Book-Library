@@ -6,26 +6,31 @@ import com.example.booklibrary.repository.MongoUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final MongoUserRepository mongoUserRepository;
     private final PasswordEncoder encoder;
 
-<span class="fc" id="L14">    public UserService(MongoUserRepository mongoUserRepository, PasswordEncoder encoder) {</span>
-<span class="fc" id="L15">        this.mongoUserRepository = mongoUserRepository;</span>
-<span class="fc" id="L16">        this.encoder = encoder;</span>
-<span class="fc" id="L17">    }</span>
+<span class="fc" id="L16">    public UserService(MongoUserRepository mongoUserRepository, PasswordEncoder encoder) {</span>
+<span class="fc" id="L17">        this.mongoUserRepository = mongoUserRepository;</span>
+<span class="fc" id="L18">        this.encoder = encoder;</span>
+<span class="fc" id="L19">    }</span>
 
     public MongoUser createMongoUser(MongoUserDTO mongoUserDTO) {
 
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username()).isPresent()) {</span>
-<span class="nc" id="L22">            throw new IllegalArgumentException(&quot;The username already exists.&quot;);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username()).isPresent()) {</span>
+<span class="fc" id="L24">            throw new IllegalArgumentException(&quot;The username already exists.&quot;);</span>
         } else {
-<span class="nc" id="L24">            String encodedPassword = encoder.encode(mongoUserDTO.password());</span>
-<span class="nc" id="L25">            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());</span>
-<span class="nc" id="L26">            return mongoUserRepository.save(encodedUser);</span>
+<span class="fc" id="L26">            String encodedPassword = encoder.encode(mongoUserDTO.password());</span>
+<span class="fc" id="L27">            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.firstname(), mongoUserDTO.lastname());</span>
+<span class="fc" id="L28">            return mongoUserRepository.save(encodedUser);</span>
         }
     }
 
+    public Optional&lt;MongoUser&gt; findUserByUsername(String username) {
+<span class="fc" id="L33">        return mongoUserRepository.findMongoUserByUsername(username);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

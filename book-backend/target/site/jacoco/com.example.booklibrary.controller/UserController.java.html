@@ -20,27 +20,22 @@ public class UserController {
 <span class="fc" id="L20">        this.userService = userService;</span>
 <span class="fc" id="L21">    }</span>
 
-    @GetMapping(&quot;/me&quot;)
-    public String getMe() {
-<span class="nc" id="L25">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
-    }
-
     @PostMapping(&quot;/login&quot;)
     public String login() {
-<span class="nc" id="L30">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="nc" id="L25">        return SecurityContextHolder.getContext().getAuthentication().getName();</span>
     }
 
     @PostMapping(&quot;/signup&quot;)
     public ResponseEntity&lt;MongoUser&gt; createUser(@RequestBody MongoUserDTO mongoUserDTO) {
-<span class="nc" id="L35">        userService.createMongoUser(mongoUserDTO);</span>
-<span class="nc" id="L36">        return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);</span>
+<span class="nc" id="L30">        userService.createMongoUser(mongoUserDTO);</span>
+<span class="nc" id="L31">        return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);</span>
     }
 
     @PostMapping(&quot;/logout&quot;)
     public void logout(HttpSession httpSession) {
-<span class="nc" id="L41">        httpSession.invalidate();</span>
-<span class="nc" id="L42">        SecurityContextHolder.clearContext();</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L36">        httpSession.invalidate();</span>
+<span class="nc" id="L37">        SecurityContextHolder.clearContext();</span>
+<span class="nc" id="L38">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

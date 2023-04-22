@@ -19,14 +19,10 @@ _
 /book-frontend/src/component/ProtectedRoutes.tsx,9\3\93adb83ccc2cfd01f5042b5265b61b16e05fec4b
 V
 &book-frontend/src/component/Header.tsx,c\5\c5164781468ec1366d96ee5609fb1c1ed5004a7e
-Ö
-Ubook-backend/src/main/java/com/example/booklibrary/config/ReactRoutingForwarding.java,9\6\96804fb2f7dd1da3e9915c804b0277ede01a0be0
 z
 Jbook-backend/src/main/java/com/example/booklibrary/exception/ApiError.java,d\2\d2a9daf1a3593bf1a0702a7026beb1ba4ef845e0
 à
 Xbook-backend/src/main/java/com/example/booklibrary/exception/GlobalExceptionHandler.java,5\3\535d9dd83ffb1a995b6456f8fba10e564a64c69c
-Å
-Qbook-backend/src/main/java/com/example/booklibrary/controller/BookController.java,e\9\e90f765656c99ee3b3174f51bfc8c9ba4ee9ff47
 r
 Bbook-backend/src/main/java/com/example/booklibrary/model/Book.java,f\5\f5065c68390093e3e666f7e98e199755057a579a
 u
@@ -44,12 +40,4 @@ Kbook-backend/src/main/java/com/example/booklibrary/service/BookService.java,1\
 É
 Sbook-backend/src/test/java/com/example/booklibrary/BooklibraryApplicationTests.java,b\6\b69c0104a1541f7111c57a5ca4dd2b3078c84c59
 
-Obook-backend/src/test/java/com/example/booklibrary/service/BookServiceTest.java,c\d\cdb2536ce64ec932d4c975a8dc3bfaa2682371eb
-Ö
-Ubook-backend/src/test/java/com/example/booklibrary/controller/BookControllerTest.java,e\3\e32b9cf359422ba2415af1c2001b4f62438a631d
-
 Obook-backend/src/main/java/com/example/booklibrary/security/SecurityConfig.java,2\6\26e2bc3f9c400cfa6ea7a574d0957018c9216a9b
-
-Obook-backend/src/test/java/com/example/booklibrary/service/UserServiceTest.java,f\9\f971418a566d705d43d5410ba55e863c7adf989c
-ã
-[book-backend/src/test/java/com/example/booklibrary/service/MongoUserDetailsServiceTest.java,c\5\c5d1dd960ee63c1e4bd7f0a3589dec79d9f5a89a

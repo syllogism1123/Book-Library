@@ -1,3 +1,6 @@
+com\example\booklibrary\service\UserServiceTest.class
 com\example\booklibrary\service\BookServiceTest.class
 com\example\booklibrary\controller\BookControllerTest.class
+com\example\booklibrary\service\MongoUserDetailsServiceTest.class
 com\example\booklibrary\BooklibraryApplicationTests.class
+selenium\LoginPage.class
