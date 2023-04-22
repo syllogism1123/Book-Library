@@ -9,7 +9,7 @@ export default function useUser() {
     const [user, setUser] = useState<User>(initial);
 
     const login = async (username: string, password: string) => {
-        return axios.post("http://localhost:8080/api/users/login", undefined, {
+        return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export default function useUser() {
 
     const logout = async () => {
         const authToken = localStorage.getItem('authToken');
-        return axios.post("http://localhost:8080/api/users/logout", undefined, {
+        return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
