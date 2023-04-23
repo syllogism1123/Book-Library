@@ -28,6 +28,7 @@ export default function useUser() {
         });
     }
 
+
     const logout = async () => {
         const authToken = localStorage.getItem('authToken');
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {

@@ -19,7 +19,7 @@ export const LoginPage = (props: Props) => {
         props.onLogin(username, password).then((s) => {
             if (s) {
                 navigate("/books")
-                /* window.location.reload();*/
+                window.location.reload();
             } else {
                 setError(true);
                 console.log("invalid")
