@@ -3,17 +3,14 @@ import {Button, Card, FormControl, MenuItem, Select, SelectChangeEvent, TextFiel
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {BookArt} from "../model/BookArt";
 import {useNavigate} from "react-router-dom";
-import useUser from "../hook/useUser";
 
 type AddBookProps = {
     addBook: (book: BookModel) => void;
 }
 
 export const AddBook = (props: AddBookProps) => {
-    const {user} = useUser();
-
     const initial: BookModel = {
-        isbn: "", title: "", author: "", instant: new Date(), art: BookArt.EBOOK, userId: user?.id
+        isbn: "", title: "", author: "", instant: new Date(), art: BookArt.EBOOK
     }
     const [book, setBook] = useState<BookModel>(initial);
 
