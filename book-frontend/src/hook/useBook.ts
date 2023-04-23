@@ -25,7 +25,7 @@ export const useBook = () => {
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
-        }).then((response) => setBooks(response.data))
+        }).then((response) => {setBooks(response.data)})
             .catch((error) => {
                 console.error(error);
             })

@@ -29,7 +29,7 @@ function App() {
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                    <Route element={<ProtectedRoutes user={user}/>}>
+                {/*    <Route element={<ProtectedRoutes user={user}/>}>*/}
 
                     <Route path="/" element={<Navigate to="/books"/>}>
                     </Route>
@@ -52,7 +52,7 @@ function App() {
                     </Route>
                     <Route path="/books/:id" element={<BookDetails/>}/>
                     <Route path="/books/edit/:id" element={<EditBook updateBook={updateBook}/>}/>
-                    </Route>
+             {/*       </Route>*/}
                 </Routes>
             </BrowserRouter>
         </div>

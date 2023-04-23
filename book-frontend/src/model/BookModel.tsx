@@ -7,6 +7,7 @@ export  type Book = {
     author: string,
     instant: Date,
     art: BookArt;
+    userId?: string
 }
 
 
@@ -16,4 +17,5 @@ export  type BookModel = {
     author: string,
     instant: Date,
     art: BookArt;
+    userId?: string
 }

@@ -1,14 +1,10 @@
 
 K
 book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
-S
-#book-frontend/src/model/BookArt.tsx,c\2\c2c4da44711e0c6d5df1bd7f9cf624283c1276b9
 ~
 Nbook-backend/src/main/java/com/example/booklibrary/BookLibraryApplication.java,9\9\99b2d4f09286e95b9a92d976ef6601ba68e8a0d0
 [
 +book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
-U
-%book-frontend/src/model/BookModel.tsx,a\5\a5190bd7698fc8111d409b83bc21fc5741d0d043
 X
 (book-frontend/src/component/EditBook.tsx,4\6\462e35cfc384fef4a01cde2b87173bc5721236e6
 V
@@ -17,8 +13,6 @@ z
 Jbook-backend/src/main/java/com/example/booklibrary/exception/ApiError.java,d\2\d2a9daf1a3593bf1a0702a7026beb1ba4ef845e0
 à
 Xbook-backend/src/main/java/com/example/booklibrary/exception/GlobalExceptionHandler.java,5\3\535d9dd83ffb1a995b6456f8fba10e564a64c69c
-r
-Bbook-backend/src/main/java/com/example/booklibrary/model/Book.java,f\5\f5065c68390093e3e666f7e98e199755057a579a
 u
 Ebook-backend/src/main/java/com/example/booklibrary/model/BookArt.java,f\c\fc3778b56fb1bb48c9c7bb89854acb412b3a4afd
 z
@@ -31,8 +25,6 @@ Qbook-backend/src/main/java/com/example/booklibrary/repository/BookRepository.ja
 Vbook-backend/src/main/java/com/example/booklibrary/repository/MongoUserRepository.java,9\0\904ecc5856bf124e352e9d4ddb9d6753a121234f
 {
 Kbook-backend/src/main/java/com/example/booklibrary/service/BookService.java,1\f\1fc032f80afa8a668b4cca4730a216ae3af9be0c
-
-Obook-backend/src/main/java/com/example/booklibrary/security/SecurityConfig.java,2\6\26e2bc3f9c400cfa6ea7a574d0957018c9216a9b
 É
 Sbook-backend/src/test/java/com/example/booklibrary/BooklibraryApplicationTests.java,b\6\b69c0104a1541f7111c57a5ca4dd2b3078c84c59
 á
@@ -41,8 +33,6 @@ O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
-I
-book-frontend/src/App.tsx,5\b\5b6d17f3f5aa0717c69d17c94c231edb4b52226d
 S
 #.github/workflows/sonar-backend.yml,6\d\6da5a3f76934916b670a730d02c25e0b3bb44410
 Å
