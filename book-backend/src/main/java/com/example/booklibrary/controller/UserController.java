@@ -24,6 +24,10 @@ public class UserController {
     public String login() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
+    @GetMapping("/me")
+    public String getMe() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<MongoUser> createUser(@RequestBody MongoUserDTO mongoUserDTO) {

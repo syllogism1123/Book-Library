@@ -82,6 +82,7 @@ export const EditBook = (props: EditBookProps) => {
                     <TextField
                         name="isbn"
                         value={bookToUpdate?.isbn}
+                        required={true}
                         onChange={onChange}
                         placeholder="ISBN"
                         style={{marginBottom: '10px'}}
@@ -89,6 +90,7 @@ export const EditBook = (props: EditBookProps) => {
                     <TextField
                         name="title"
                         value={bookToUpdate?.title}
+                        required={true}
                         onChange={onChange}
                         placeholder="Title"
                         style={{marginBottom: '10px'}}
@@ -96,6 +98,7 @@ export const EditBook = (props: EditBookProps) => {
                     <TextField
                         name="author"
                         value={bookToUpdate?.author}
+                        required={true}
                         onChange={onChange}
                         placeholder="Author"
                         style={{marginBottom: '10px'}}
@@ -103,6 +106,7 @@ export const EditBook = (props: EditBookProps) => {
                     <Select
                         id="demo-simple-select"
                         value={bookToUpdate?.art}
+                        required={true}
                         label="BookArt"
                         name="art"
                         onChange={handleChange}
