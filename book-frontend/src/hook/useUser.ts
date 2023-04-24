@@ -4,9 +4,9 @@ import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
 
-    const [, setUser] = useState<User>();
+    const [user, setUser] = useState<User>();
     const [error, setError] = useState<boolean>();
-    const[username,setUsername]=useState<string>();
+
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
@@ -19,7 +19,7 @@ export default function useUser() {
                 password
             }
         }).then((response) => {
-           setUsername(response.data);
+           setUser(response.data);
             return true;
         }).catch(error => {
             console.error(error);
@@ -38,7 +38,7 @@ export default function useUser() {
             },
             withCredentials: true
         }).then((response) => {
-            setUsername(response.data)
+            setUser(response.data)
             console.log(response.data)
         })
             .catch((error) => {
@@ -57,7 +57,7 @@ export default function useUser() {
             },
             withCredentials: true,
         }).then(() => {
-            setUsername(undefined)
+            setUser(undefined)
         }).catch(error => {
             console.error(error);
         })
@@ -81,7 +81,7 @@ export default function useUser() {
         })
     }
 
-    return {username, login, logout, createUser, error, setError,loadUser}
+    return {user, login, logout, createUser, error, setError,loadUser}
 }
 
 

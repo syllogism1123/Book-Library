@@ -17,7 +17,7 @@ import ProtectedRoutes from "./component/ProtectedRoutes";
 
 
 function App() {
-    const {username, login, logout, createUser,loadUser} = useUser();
+    const {user, login, logout, createUser,loadUser} = useUser();
     const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook,loadAllBooks} = useBook();
     useEffect(() => {
         loadUser().catch(
@@ -33,7 +33,7 @@ function App() {
                 console.error(r)
             }
         )
-    }, [username]);
+    }, [user]);
 
 
     return (
@@ -46,7 +46,7 @@ function App() {
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                    <Route element={<ProtectedRoutes user={username}/>}>
+                    <Route element={<ProtectedRoutes user={user}/>}>
 
                         <Route path="/" element={<Navigate to="/books"/>}>
                         </Route>
