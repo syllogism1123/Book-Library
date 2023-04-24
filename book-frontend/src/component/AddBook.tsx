@@ -52,6 +52,7 @@ export const AddBook = (props: AddBookProps) => {
                     <TextField
                         name="isbn"
                         value={book.isbn}
+                        required={true}
                         onChange={onChange}
                         placeholder="ISBN"
                         style={{marginBottom: '10px'}}
@@ -59,6 +60,7 @@ export const AddBook = (props: AddBookProps) => {
                     <TextField
                         name="title"
                         value={book.title}
+                        required={true}
                         onChange={onChange}
                         placeholder="Title"
                         style={{marginBottom: '10px'}}
@@ -66,12 +68,14 @@ export const AddBook = (props: AddBookProps) => {
                     <TextField
                         name="author"
                         value={book.author}
+                        required={true}
                         onChange={onChange}
                         placeholder="Author"
                         style={{marginBottom: '10px'}}
                     />
                     <Select
                         id="demo-simple-select"
+                        required={true}
                         value={book.art}
                         label="BookArt"
                         name="art"
