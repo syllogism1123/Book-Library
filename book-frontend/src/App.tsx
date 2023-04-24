@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Header from "./component/Header";
 import BooKGallery from "./component/BooKGallery";
@@ -17,8 +17,25 @@ import ProtectedRoutes from "./component/ProtectedRoutes";
 
 
 function App() {
-    const {user,login, logout, createUser} = useUser();
-    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook} = useBook();
+    const {username, login, logout, createUser,loadUser} = useUser();
+    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook,loadAllBooks} = useBook();
+    useEffect(() => {
+        loadUser().catch(
+            (r) => {
+                console.error(r)
+            }
+        )
+    }, []);
+
+    useEffect(() => {
+        loadAllBooks().catch(
+            (r) => {
+                console.error(r)
+            }
+        )
+    }, [username]);
+
+
     return (
         <div className="App">
             <PrimarySearchAppBar text={text} onTextChange={onTextChange}/>
@@ -29,30 +46,30 @@ function App() {
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                {/*    <Route element={<ProtectedRoutes user={user}/>}>*/}
+                    <Route element={<ProtectedRoutes user={username}/>}>
 
-                    <Route path="/" element={<Navigate to="/books"/>}>
+                        <Route path="/" element={<Navigate to="/books"/>}>
+                        </Route>
+                        <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
+                        </Route>
+                        <Route path='/books' element={
+                            <div>
+                                {filteredBooks.length > 0 ?
+                                    <BooKGallery books={filteredBooks}
+                                                 addBook={addBook} updateBook={updateBook}
+                                                 deleteBook={deleteBook}/>
+                                    : <Alert severity="error" className="no-book-found">
+                                        <h3>No Book Found!</h3>
+                                    </Alert>
+                                }
+                            </div>}>
+                        </Route>
+                        <Route path='/books/add'
+                               element={<AddBook addBook={addBook}/>}>
+                        </Route>
+                        <Route path="/books/:id" element={<BookDetails/>}/>
+                        <Route path="/books/edit/:id" element={<EditBook updateBook={updateBook}/>}/>
                     </Route>
-                    <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
-                    </Route>
-                    <Route path='/books' element={
-                        <div>
-                            {filteredBooks.length > 0 ?
-                                <BooKGallery books={filteredBooks}
-                                             addBook={addBook} updateBook={updateBook}
-                                             deleteBook={deleteBook}/>
-                                : <Alert severity="error" className="no-book-found">
-                                    <h3>No Book Found!</h3>
-                                </Alert>
-                            }
-                        </div>}>
-                    </Route>
-                    <Route path='/books/add'
-                           element={<AddBook addBook={addBook}/>}>
-                    </Route>
-                    <Route path="/books/:id" element={<BookDetails/>}/>
-                    <Route path="/books/edit/:id" element={<EditBook updateBook={updateBook}/>}/>
-             {/*       </Route>*/}
                 </Routes>
             </BrowserRouter>
         </div>

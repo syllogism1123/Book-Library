@@ -3,11 +3,10 @@ import {useState} from "react";
 import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
-    /* const initial: User = {
-         id: "", username: "", password: "", firstname: "", lastname: ""
-     }*/
-    const [user, setUser] = useState<User>();
+
+    const [, setUser] = useState<User>();
     const [error, setError] = useState<boolean>();
+    const[username,setUsername]=useState<string>();
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
@@ -20,13 +19,32 @@ export default function useUser() {
                 password
             }
         }).then((response) => {
-            setUser(response.data);
+           setUsername(response.data);
             return true;
         }).catch(error => {
             console.error(error);
             return false;
         });
     }
+
+    const loadUser = async () => {
+
+        const authToken = localStorage.getItem('authToken');
+        await axios.get("http://localhost:8080/api/users/me", {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        }).then((response) => {
+            setUsername(response.data)
+            console.log(response.data)
+        })
+            .catch((error) => {
+                console.error(error);
+            })
+    };
 
 
     const logout = async () => {
@@ -38,8 +56,8 @@ export default function useUser() {
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true,
-        }).then((response) => {
-            setUser(response.data)
+        }).then(() => {
+            setUsername(undefined)
         }).catch(error => {
             console.error(error);
         })
@@ -63,7 +81,7 @@ export default function useUser() {
         })
     }
 
-    return {user, login, logout, createUser, error, setError}
+    return {username, login, logout, createUser, error, setError,loadUser}
 }
 
 

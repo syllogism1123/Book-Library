@@ -13,7 +13,7 @@ export const LogoutPage = (props: Props) => {
         event.preventDefault();
         props.onLogout().then(() => {
             navigate("/login")
-           window.location.reload();
+
         })
     }
 
