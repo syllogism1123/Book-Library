@@ -33,7 +33,7 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 <span class="pc" id="L33">                .authenticationEntryPoint((request, response, authException) -&gt; response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()))</span>
 <span class="fc" id="L34">                .and()</span>
 <span class="fc" id="L35">                .authorizeHttpRequests()</span>
-<span class="fc" id="L36">                .requestMatchers(&quot;/api/users/signup&quot;).permitAll()</span>
+<span class="fc" id="L36">                .requestMatchers(&quot;/api/users/signup&quot;,&quot;/api/users/me&quot;).permitAll()</span>
 <span class="fc" id="L37">                .requestMatchers(&quot;/api/**&quot;).authenticated()</span>
 <span class="fc" id="L38">                .anyRequest().permitAll()</span>
 <span class="fc" id="L39">                .and().build();</span>

@@ -47,12 +47,13 @@ export const AddBook = (props: AddBookProps) => {
 
     return (
         <div className="form">
-            <Card variant="outlined" style={{backgroundColor: 'cyan'}}>
+            <Card variant="outlined" style={{backgroundColor: 'cyan'}} className="card">
                 <FormControl component="form" onSubmit={onSubmit}>
                     <TextField
                         name="isbn"
                         value={book.isbn}
-                        required={true}
+                        required
+                        label="ISBN"
                         onChange={onChange}
                         placeholder="ISBN"
                         style={{marginBottom: '10px'}}
@@ -60,7 +61,8 @@ export const AddBook = (props: AddBookProps) => {
                     <TextField
                         name="title"
                         value={book.title}
-                        required={true}
+                        required
+                        label="Title"
                         onChange={onChange}
                         placeholder="Title"
                         style={{marginBottom: '10px'}}
@@ -68,17 +70,18 @@ export const AddBook = (props: AddBookProps) => {
                     <TextField
                         name="author"
                         value={book.author}
-                        required={true}
+                        required
+                        label="Author"
                         onChange={onChange}
                         placeholder="Author"
                         style={{marginBottom: '10px'}}
                     />
                     <Select
                         id="demo-simple-select"
-                        required={true}
+                        required
                         value={book.art}
-                        label="BookArt"
                         name="art"
+                        label="BookArt"
                         onChange={handleChange}
                     >
                         <MenuItem value={BookArt.EBOOK}>EBOOK</MenuItem>

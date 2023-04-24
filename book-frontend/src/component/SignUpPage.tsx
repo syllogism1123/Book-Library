@@ -49,7 +49,8 @@ export const SignUpPage = (props: createUserProps) => {
                     <TextField
                         name="username"
                         type="text"
-                        required={true}
+                        required
+                        label="Username"
                         value={user.username}
                         onChange={onChange}
                         placeholder="UserName"
@@ -58,7 +59,8 @@ export const SignUpPage = (props: createUserProps) => {
                     <TextField
                         name="password"
                         type="password"
-                        required={true}
+                        required
+                        label="Password"
                         value={user.password}
                         onChange={onChange}
                         placeholder="Password"
@@ -67,7 +69,8 @@ export const SignUpPage = (props: createUserProps) => {
                     <TextField
                         name="firstname"
                         type="text"
-                        required={true}
+                        required
+                        label="Firstname"
                         value={user.firstname}
                         onChange={onChange}
                         placeholder="FirstName"
@@ -76,7 +79,8 @@ export const SignUpPage = (props: createUserProps) => {
                     <TextField
                         name="lastname"
                         type="text"
-                        required={true}
+                        required
+                        label="Lastname"
                         value={user.lastname}
                         onChange={onChange}
                         placeholder="LastName"

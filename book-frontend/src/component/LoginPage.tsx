@@ -33,6 +33,8 @@ export const LoginPage = (props: Props) => {
                 <TextField
                     name='username'
                     type="text"
+                    required
+                    label="Username"
                     value={username}
                     placeholder='username'
                     style={{marginBottom: '5px'}}
@@ -41,6 +43,8 @@ export const LoginPage = (props: Props) => {
                 <TextField
                     name='password'
                     type="password"
+                    required
+                    label="Password"
                     value={password}
                     placeholder='password'
                     size="small"

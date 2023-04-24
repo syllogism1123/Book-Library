@@ -77,12 +77,13 @@ export const EditBook = (props: EditBookProps) => {
 
     return (
         <div className="form">
-            <Card variant="outlined" style={{backgroundColor: 'cyan'}}>
+            <Card variant="outlined" style={{backgroundColor: 'cyan'}} className="card">
                 <FormControl component="form" onSubmit={onSubmit}>
                     <TextField
                         name="isbn"
                         value={bookToUpdate?.isbn}
-                        required={true}
+                        required
+                        label="ISBN"
                         onChange={onChange}
                         placeholder="ISBN"
                         style={{marginBottom: '10px'}}
@@ -90,7 +91,8 @@ export const EditBook = (props: EditBookProps) => {
                     <TextField
                         name="title"
                         value={bookToUpdate?.title}
-                        required={true}
+                        required
+                        label="Title"
                         onChange={onChange}
                         placeholder="Title"
                         style={{marginBottom: '10px'}}
@@ -98,7 +100,8 @@ export const EditBook = (props: EditBookProps) => {
                     <TextField
                         name="author"
                         value={bookToUpdate?.author}
-                        required={true}
+                        required
+                        label="Author"
                         onChange={onChange}
                         placeholder="Author"
                         style={{marginBottom: '10px'}}
@@ -106,7 +109,7 @@ export const EditBook = (props: EditBookProps) => {
                     <Select
                         id="demo-simple-select"
                         value={bookToUpdate?.art}
-                        required={true}
+                        required
                         label="BookArt"
                         name="art"
                         onChange={handleChange}
