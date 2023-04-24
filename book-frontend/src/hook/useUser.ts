@@ -19,34 +19,14 @@ export default function useUser() {
                 password
             }
         }).then((response) => {
-           setUser(response.data);
+            setUser(response.data);
+            console.log(response.data)
             return true;
         }).catch(error => {
             console.error(error);
             return false;
         });
     }
-
-    const loadUser = async () => {
-
-        const authToken = localStorage.getItem('authToken');
-        await axios.get("http://localhost:8080/api/users/me", {
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
-            },
-            withCredentials: true
-        }).then((response) => {
-            setUser(response.data)
-            console.log(response.data)
-        })
-            .catch((error) => {
-                console.error(error);
-            })
-    };
-
-
     const logout = async () => {
         const authToken = localStorage.getItem('authToken');
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
@@ -58,6 +38,7 @@ export default function useUser() {
             withCredentials: true,
         }).then(() => {
             setUser(undefined)
+            console.log(user)
         }).catch(error => {
             console.error(error);
         })
@@ -81,7 +62,7 @@ export default function useUser() {
         })
     }
 
-    return {user, login, logout, createUser, error, setError,loadUser}
+    return {user, login, logout, createUser, error, setError}
 }
 
 
