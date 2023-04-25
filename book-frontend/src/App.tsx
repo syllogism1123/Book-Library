@@ -17,11 +17,19 @@ import ProtectedRoutes from "./component/ProtectedRoutes";
 
 
 function App() {
-    const {user, login, logout, createUser} = useUser();
-    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook,loadAllBooks} = useBook();
+    const {user, login, logout, createUser, loadUser} = useUser();
+    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook, loadAllBooks} = useBook();
 
     useEffect(() => {
         loadAllBooks().catch(
+            (r) => {
+                console.error(r)
+            }
+        )
+    }, [user]);
+
+    useEffect(() => {
+        loadUser().catch(
             (r) => {
                 console.error(r)
             }
