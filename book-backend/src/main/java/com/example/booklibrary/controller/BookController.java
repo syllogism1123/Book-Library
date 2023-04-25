@@ -20,6 +20,8 @@ public class BookController {
     private final BookService bookService;
     private final UserService userService;
 
+    private static final String NO_USER_FOUND = "user not found";
+
     public BookController(BookService bookService, UserService userService) {
         this.bookService = bookService;
         this.userService = userService;
@@ -33,7 +35,7 @@ public class BookController {
             String userId = user.get().id();
             return new ResponseEntity<>(bookService.getAllBooksByUserId(userId), HttpStatus.OK);
         }
-        throw new NoSuchElementException("user not found");
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 
     @PostMapping()
@@ -45,7 +47,7 @@ public class BookController {
             book.withUserId(userId); // add this line to set the userID in the book object
             return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
         }
-        throw new NoSuchElementException("This user not found");
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 
     @GetMapping("/{id}")
@@ -62,7 +64,7 @@ public class BookController {
             updatedBook.withUserId(userId); // add this line to set the userID in the updated book object
             return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
         }
-        throw new NoSuchElementException("user not found");
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 
     @DeleteMapping("/{id}")
@@ -74,6 +76,6 @@ public class BookController {
             bookService.deleteBookByIdAndUserId(id, userId); // change to deleteBookByIdAndUserId method which takes userID as well
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        throw new NoSuchElementException("user not found");
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 }
