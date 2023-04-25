@@ -23,7 +23,7 @@ public class BookService {
 
 
     public Book addBook(Book book, String userId) {
-<span class="fc" id="L26">       Book bookToSave = book.withUserId(userId);</span>
+<span class="fc" id="L26">        Book bookToSave = book.withUserId(userId);</span>
 <span class="fc" id="L27">        return bookRepos.save(bookToSave);</span>
     }
 
@@ -40,8 +40,8 @@ public class BookService {
         }
     }
 
-    public void deleteBookById(String id) {
-<span class="fc" id="L44">        bookRepos.deleteById(id);</span>
+    public void deleteBookByIdAndUserId(String id, String userId) {
+<span class="fc" id="L44">        bookRepos.deleteByIdAndUserId(id, userId);</span>
 <span class="fc" id="L45">    }</span>
 
 }

@@ -1,8 +1,6 @@
 
 K
 book-frontend/src/index.css,9\5\9588222fdee5b8b1c4e13878320dbcae9e9b4345
-V
-&book-frontend/src/component/Header.tsx,c\5\c5164781468ec1366d96ee5609fb1c1ed5004a7e
 z
 Jbook-backend/src/main/java/com/example/booklibrary/exception/ApiError.java,d\2\d2a9daf1a3593bf1a0702a7026beb1ba4ef845e0
 ˆ
@@ -29,8 +27,6 @@ $.github/workflows/sonar-frontend.yml,9\c\9c51df10072e3ef6ef5b5789444db6cb38bef
 Wbook-backend/src/main/java/com/example/booklibrary/service/MongoUserDetailsService.java,e\8\e886c431ad2411c210f99ad2b5cbf0b2a4504112
 ~
 Nbook-backend/src/main/java/com/example/booklibrary/BookLibraryApplication.java,9\9\99b2d4f09286e95b9a92d976ef6601ba68e8a0d0
-[
-+book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
 I
 book-frontend/src/App.css,8\4\845a2a84513531352f1ef1a80a8712b293ce18c9
 X

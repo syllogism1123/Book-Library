@@ -4,7 +4,7 @@ import Header from "./component/Header";
 import BooKGallery from "./component/BooKGallery";
 import {Alert} from "@mui/material";
 import {AddBook} from "./component/AddBook";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {LoginPage} from "./component/LoginPage";
 import {BookDetails} from "./component/BookDetails";
 import useUser from "./hook/useUser";
@@ -15,10 +15,11 @@ import PrimarySearchAppBar from "./component/PrimarySearchAppBar";
 import {SignUpPage} from "./component/SignUpPage";
 import ProtectedRoutes from "./component/ProtectedRoutes";
 
-function App() {
 
+function App() {
     const {user, login, logout, createUser} = useUser();
-    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook, loadAllBooks} = useBook();
+    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook,loadAllBooks} = useBook();
+
     useEffect(() => {
         loadAllBooks().catch(
             (r) => {
@@ -40,9 +41,8 @@ function App() {
                     </Route>
                     <Route element={<ProtectedRoutes user={user}/>}>
 
-                        {/* <Route path="/" element={<Navigate to="/books"/>}>
-                        </Route>*/}
-
+                        <Route path="/" element={<Navigate to="/books"/>}>
+                        </Route>
                         <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
                         </Route>
                         <Route path='/books' element={

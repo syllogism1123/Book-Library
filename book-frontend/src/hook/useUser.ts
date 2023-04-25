@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
@@ -64,8 +64,10 @@ export default function useUser() {
 
 
     const loadUser = async () => {
-        return await axios.post("http://localhost:8080/api/users/me", {
+        const authToken = localStorage.getItem('authToken');
+        return await axios.get("http://localhost:8080/api/users/user", {
             headers: {
+                'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
@@ -77,7 +79,6 @@ export default function useUser() {
             console.error(error);
         })
     }
-
 
     return {user, setUser, login, logout, createUser, error, setError, loadUser}
 }
