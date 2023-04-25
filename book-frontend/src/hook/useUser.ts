@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
@@ -62,7 +62,24 @@ export default function useUser() {
         })
     }
 
-    return {user, login, logout, createUser, error, setError}
+
+    const loadUser = async () => {
+        return await axios.post("http://localhost:8080/api/users/me", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+            withCredentials: true
+        }).then((response) => {
+            setUser(response.data)
+            console.log(user)
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+
+    return {user, setUser, login, logout, createUser, error, setError, loadUser}
 }
 
 

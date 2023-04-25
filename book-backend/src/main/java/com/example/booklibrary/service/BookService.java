@@ -23,7 +23,7 @@ public class BookService {
 
 
     public Book addBook(Book book, String userId) {
-       Book bookToSave = book.withUserId(userId);
+        Book bookToSave = book.withUserId(userId);
         return bookRepos.save(bookToSave);
     }
 
@@ -40,8 +40,8 @@ public class BookService {
         }
     }
 
-    public void deleteBookById(String id) {
-        bookRepos.deleteById(id);
+    public void deleteBookByIdAndUserId(String id, String userId) {
+        bookRepos.deleteByIdAndUserId(id, userId);
     }
 
 }

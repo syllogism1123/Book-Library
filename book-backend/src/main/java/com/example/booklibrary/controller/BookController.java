@@ -42,9 +42,10 @@ public class BookController {
         Optional<MongoUser> user = userService.findUserByUsername(username);
         if (user.isPresent()) {
             String userId = user.get().id();
+            book.withUserId(userId); // add this line to set the userID in the book object
             return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
         }
-        throw new NoSuchElementException("user not found");
+        throw new NoSuchElementException("This user not found");
     }
 
     @GetMapping("/{id}")
@@ -54,12 +55,25 @@ public class BookController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
-        return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<MongoUser> user = userService.findUserByUsername(username);
+        if (user.isPresent()) {
+            String userId = user.get().id();
+            updatedBook.withUserId(userId); // add this line to set the userID in the updated book object
+            return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+        }
+        throw new NoSuchElementException("user not found");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBookById(@PathVariable String id) {
-        bookService.deleteBookById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<MongoUser> user = userService.findUserByUsername(username);
+        if (user.isPresent()) {
+            String userId = user.get().id();
+            bookService.deleteBookByIdAndUserId(id, userId); // change to deleteBookByIdAndUserId method which takes userID as well
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        throw new NoSuchElementException("user not found");
     }
 }
