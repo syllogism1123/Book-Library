@@ -2,6 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import {User, UserModel} from "../model/UserModel";
 
+
 export default function useUser() {
 
     const [user, setUser] = useState<User | null>(null);
@@ -10,9 +11,7 @@ export default function useUser() {
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json',
-            },
+
             auth: {
                 username,
                 password
@@ -27,12 +26,8 @@ export default function useUser() {
         });
     }
     const logout = async () => {
-        const authToken = localStorage.getItem('authToken');
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-            },
+
             withCredentials: true,
         }).then((response) => {
             setUser(null)
@@ -43,12 +38,8 @@ export default function useUser() {
     }
 
     const createUser = async (newUser: UserModel) => {
-        const authToken = localStorage.getItem('authToken');
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-            },
+
             withCredentials: true
         }).then((response) => {
             setUser(response.data)
@@ -59,13 +50,10 @@ export default function useUser() {
         })
     }
 
+
     const loadUser = async () => {
-        const authToken = localStorage.getItem('authToken');
+
         return await axios.get("http://localhost:8080/api/users/user", {
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-            },
             withCredentials: true
         }).then((response) => {
             setUser(response.data)

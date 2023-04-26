@@ -16,13 +16,7 @@ export const EditBook = (props: EditBookProps) => {
     const [bookToUpdate, setBookToUpdate] = useState<Book>(initial);
     const {id} = useParams<{ id: string }>();
     const loadBookById = (id: string) => {
-        const authToken = localStorage.getItem('authToken');
         axios.get('http://localhost:8080/api/books/' + id, {
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
-            },
             withCredentials: true
         })
             .then((response) => {

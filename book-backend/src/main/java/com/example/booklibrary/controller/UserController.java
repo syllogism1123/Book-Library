@@ -30,8 +30,9 @@ public class UserController {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    @GetMapping("/{username}")
-    public MongoUser findUserByUsername(@PathVariable String username) {
+  @GetMapping("/user")
+    public MongoUser findUserByUsername() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userService.findUserByUsername(username);
     }
 
