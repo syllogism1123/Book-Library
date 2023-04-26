@@ -12,7 +12,6 @@ export default function useUser() {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             auth: {
                 username,
@@ -33,7 +32,6 @@ export default function useUser() {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true,
         }).then((response) => {
@@ -50,7 +48,6 @@ export default function useUser() {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
         }).then((response) => {
@@ -69,7 +66,6 @@ export default function useUser() {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
         }).then((response) => {
