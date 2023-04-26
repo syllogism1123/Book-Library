@@ -4,7 +4,7 @@ import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
 
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
 
     const login = async (username: string, password: string) => {
@@ -36,8 +36,8 @@ export default function useUser() {
                 'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true,
-        }).then(() => {
-            setUser(undefined)
+        }).then((response) => {
+            setUser(null)
             console.log(user)
         }).catch(error => {
             console.error(error);

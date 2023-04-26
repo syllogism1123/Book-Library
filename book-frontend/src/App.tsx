@@ -34,7 +34,7 @@ function App() {
                 console.error(r)
             }
         )
-    }, [user]);
+    }, []);
 
 
     return (
