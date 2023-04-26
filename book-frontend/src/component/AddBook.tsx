@@ -97,5 +97,4 @@ export const AddBook = (props: AddBookProps) => {
         </div>
     );
 
-
 }

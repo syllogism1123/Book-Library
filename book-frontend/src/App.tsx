@@ -17,24 +17,16 @@ import ProtectedRoutes from "./component/ProtectedRoutes";
 
 
 function App() {
-    const {user, login, logout, createUser, loadUser} = useUser();
-    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook, loadAllBooks} = useBook();
-
+    const {isLoggedIn,login, logout, createUser} = useUser();
+    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook,loadAllBooks} = useBook();
     useEffect(() => {
         loadAllBooks().catch(
             (r) => {
                 console.error(r)
             }
         )
-    }, [user]);
+    }, [isLoggedIn]);
 
-    useEffect(() => {
-        loadUser().catch(
-            (r) => {
-                console.error(r)
-            }
-        )
-    }, []);
 
 
     return (
@@ -47,7 +39,7 @@ function App() {
                     </Route>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}>
                     </Route>
-                    <Route element={<ProtectedRoutes user={user}/>}>
+                    <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn}/>}>
 
                         <Route path="/" element={<Navigate to="/books"/>}>
                         </Route>

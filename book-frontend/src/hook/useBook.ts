@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Book, BookModel} from "../model/BookModel";
 import {toast} from "react-toastify";
 
@@ -63,13 +63,6 @@ export const useBook = () => {
         })
     };
 
-    useEffect(() => {
-        loadAllBooks().catch(
-            (r) => {
-                console.error(r)
-            }
-        )
-    }, []);
 
     return {
         onTextChange,
