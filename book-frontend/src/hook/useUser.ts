@@ -59,7 +59,6 @@ export default function useUser() {
         })
     }
 
-
     const loadUser = async () => {
         const authToken = localStorage.getItem('authToken');
         return await axios.get("http://localhost:8080/api/users/user", {
