@@ -17,8 +17,8 @@ import ProtectedRoutes from "./component/ProtectedRoutes";
 
 
 function App() {
-    const {isLoggedIn,login, logout, createUser} = useUser();
-    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook,loadAllBooks} = useBook();
+    const {isLoggedIn, login, logout, createUser} = useUser();
+    const {onTextChange, filteredBooks, text, addBook, deleteBook, updateBook, loadAllBooks} = useBook();
     useEffect(() => {
         loadAllBooks().catch(
             (r) => {
@@ -26,7 +26,6 @@ function App() {
             }
         )
     }, [isLoggedIn]);
-
 
 
     return (
@@ -45,7 +44,7 @@ function App() {
                         </Route>
                         <Route path="/logout" element={<LogoutPage onLogout={logout}/>}>
                         </Route>
-                        <Route path='/books' element={
+                        <Route path='/books/' element={
                             <div>
                                 {filteredBooks.length > 0 ?
                                     <BooKGallery books={filteredBooks}

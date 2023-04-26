@@ -32,7 +32,7 @@ export default function useUser() {
     }
 
     useEffect(() => {
-        const data = window.localStorage.getItem('CURRENT_USER');
+        const data = window.localStorage.getItem('CURRENT_USER_ACTIVE');
         if (data) {
             setIsLoggedIn(JSON.parse(data));
         }
@@ -40,7 +40,7 @@ export default function useUser() {
 
 
     useEffect(() => {
-        window.localStorage.setItem('CURRENT_USER', JSON.stringify(isLoggedIn))
+        window.localStorage.setItem('CURRENT_USER_ACTIVE', JSON.stringify(isLoggedIn))
     }, [isLoggedIn]);
 
 
