@@ -41,5 +41,3 @@ Y
 )book-frontend/src/component/LoginPage.tsx,8\8\88bd55c0f72a7d32dda0dfb1944337dfd6e91988
 V
 &book-frontend/src/component/Header.tsx,c\5\c5164781468ec1366d96ee5609fb1c1ed5004a7e
-Å
-Qbook-backend/src/main/java/com/example/booklibrary/controller/BookController.java,e\9\e90f765656c99ee3b3174f51bfc8c9ba4ee9ff47

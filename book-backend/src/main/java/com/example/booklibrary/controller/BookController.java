@@ -44,7 +44,7 @@ public class BookController {
         Optional<MongoUser> user = userService.findUserByUsername(username);
         if (user.isPresent()) {
             String userId = user.get().id();
-            book.withUserId(userId); // add this line to set the userID in the book object
+            book.withUserId(userId);
             return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
         }
         throw new NoSuchElementException(NO_USER_FOUND);
@@ -71,10 +71,10 @@ public class BookController {
     public ResponseEntity<Void> deleteBookById(@PathVariable String id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Optional<MongoUser> user = userService.findUserByUsername(username);
-        if (user.isPresent()) {
+        if (user.isPresent() && bookService.getBookById(id) !=null) {
             String userId = user.get().id();
-            bookService.deleteBookByIdAndUserId(id, userId); // change to deleteBookByIdAndUserId method which takes userID as well
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            bookService.deleteBookByIdAndUserId(id, userId);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         throw new NoSuchElementException(NO_USER_FOUND);
     }

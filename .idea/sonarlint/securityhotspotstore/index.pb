@@ -33,8 +33,6 @@ O
 book-frontend/package-lock.json,b\6\b6caf281c02a9ba4379eb8c12bbb12ee8f5d261a
 J
 book-frontend/package.json,0\2\0233fa80db978b91d7ce810e3f985739ea52671f
-Å
-Qbook-backend/src/main/java/com/example/booklibrary/controller/BookController.java,e\9\e90f765656c99ee3b3174f51bfc8c9ba4ee9ff47
 r
 Bbook-backend/src/main/java/com/example/booklibrary/model/Book.java,f\5\f5065c68390093e3e666f7e98e199755057a579a
 [
