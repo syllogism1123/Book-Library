@@ -20,6 +20,8 @@ public class BookController {
     private final BookService bookService;
     private final UserService userService;
 
+    private static final String NO_USER_FOUND = "user not found";
+
     public BookController(BookService bookService, UserService userService) {
         this.bookService = bookService;
         this.userService = userService;
@@ -33,7 +35,7 @@ public class BookController {
             String userId = user.get().id();
             return new ResponseEntity<>(bookService.getAllBooksByUserId(userId), HttpStatus.OK);
         }
-        throw new NoSuchElementException("user not found");
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 
     @PostMapping()
@@ -42,9 +44,10 @@ public class BookController {
         Optional<MongoUser> user = userService.findUserByUsername(username);
         if (user.isPresent()) {
             String userId = user.get().id();
+            book.withUserId(userId); // add this line to set the userID in the book object
             return new ResponseEntity<>(bookService.addBook(book, userId), HttpStatus.CREATED);
         }
-        throw new NoSuchElementException("user not found");
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 
     @GetMapping("/{id}")
@@ -54,12 +57,25 @@ public class BookController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
-        return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<MongoUser> user = userService.findUserByUsername(username);
+        if (user.isPresent()) {
+            String userId = user.get().id();
+            updatedBook.withUserId(userId); // add this line to set the userID in the updated book object
+            return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
+        }
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBookById(@PathVariable String id) {
-        bookService.deleteBookById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<MongoUser> user = userService.findUserByUsername(username);
+        if (user.isPresent()) {
+            String userId = user.get().id();
+            bookService.deleteBookByIdAndUserId(id, userId); // change to deleteBookByIdAndUserId method which takes userID as well
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        throw new NoSuchElementException(NO_USER_FOUND);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequestMapping("/api/users")
@@ -24,9 +26,16 @@ public class UserController {
     public String login() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
+
     @GetMapping("/me")
     public String getMe() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    @GetMapping("/user")
+    public Optional<MongoUser> findUserByUsername() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userService.findUserByUsername(username);
     }
 
     @PostMapping("/signup")

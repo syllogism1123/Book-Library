@@ -126,12 +126,13 @@ class BookServiceTest {
     }
 
     @Test
-    void deleteBookById() {
+    void deleteBookByIdAndUserId() {
         String id = UUID.randomUUID().toString();
+        String userId = UUID.randomUUID().toString();
 
-        service.deleteBookById(id);
+        service.deleteBookByIdAndUserId(id,userId);
 
-        verify(bookRepo).deleteById(id);
+        verify(bookRepo).deleteByIdAndUserId(id,userId);
 
     }
 }

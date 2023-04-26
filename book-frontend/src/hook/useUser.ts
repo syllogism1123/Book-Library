@@ -4,7 +4,7 @@ import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
 
-    const [user, setUser] = useState<User>();
+    const [user, setUser] = useState<User | null>(null);
     const [error, setError] = useState<boolean>();
 
     const login = async (username: string, password: string) => {
@@ -12,7 +12,6 @@ export default function useUser() {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             auth: {
                 username,
@@ -33,11 +32,10 @@ export default function useUser() {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true,
-        }).then(() => {
-            setUser(undefined)
+        }).then((response) => {
+            setUser(null)
             console.log(user)
         }).catch(error => {
             console.error(error);
@@ -50,7 +48,6 @@ export default function useUser() {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
         }).then((response) => {
@@ -62,7 +59,24 @@ export default function useUser() {
         })
     }
 
-    return {user, login, logout, createUser, error, setError}
+
+    const loadUser = async () => {
+        const authToken = localStorage.getItem('authToken');
+        return await axios.get("http://localhost:8080/api/users/user", {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true
+        }).then((response) => {
+            setUser(response.data)
+            console.log(user)
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+    return {user, setUser, login, logout, createUser, error, setError, loadUser}
 }
 
 

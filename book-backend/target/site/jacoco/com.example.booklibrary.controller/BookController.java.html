@@ -20,47 +20,63 @@ public class BookController {
     private final BookService bookService;
     private final UserService userService;
 
-<span class="fc" id="L23">    public BookController(BookService bookService, UserService userService) {</span>
-<span class="fc" id="L24">        this.bookService = bookService;</span>
-<span class="fc" id="L25">        this.userService = userService;</span>
-<span class="fc" id="L26">    }</span>
+    private static final String NO_USER_FOUND = &quot;user not found&quot;;
+
+<span class="fc" id="L25">    public BookController(BookService bookService, UserService userService) {</span>
+<span class="fc" id="L26">        this.bookService = bookService;</span>
+<span class="fc" id="L27">        this.userService = userService;</span>
+<span class="fc" id="L28">    }</span>
 
     @GetMapping()
     public ResponseEntity&lt;List&lt;Book&gt;&gt; getAllBooks() {
-<span class="fc" id="L30">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
-<span class="fc" id="L31">        Optional&lt;MongoUser&gt; user = userService.findUserByUsername(username);</span>
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (user.isPresent()) {</span>
-<span class="fc" id="L33">            String userId = user.get().id();</span>
-<span class="fc" id="L34">            return new ResponseEntity&lt;&gt;(bookService.getAllBooksByUserId(userId), HttpStatus.OK);</span>
+<span class="fc" id="L32">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L33">        Optional&lt;MongoUser&gt; user = userService.findUserByUsername(username);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (user.isPresent()) {</span>
+<span class="fc" id="L35">            String userId = user.get().id();</span>
+<span class="fc" id="L36">            return new ResponseEntity&lt;&gt;(bookService.getAllBooksByUserId(userId), HttpStatus.OK);</span>
         }
-<span class="nc" id="L36">        throw new NoSuchElementException(&quot;user not found&quot;);</span>
+<span class="nc" id="L38">        throw new NoSuchElementException(NO_USER_FOUND);</span>
     }
 
     @PostMapping()
     public ResponseEntity&lt;Book&gt; addBook(@RequestBody Book book) {
-<span class="fc" id="L41">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
-<span class="fc" id="L42">        Optional&lt;MongoUser&gt; user = userService.findUserByUsername(username);</span>
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if (user.isPresent()) {</span>
-<span class="fc" id="L44">            String userId = user.get().id();</span>
-<span class="fc" id="L45">            return new ResponseEntity&lt;&gt;(bookService.addBook(book, userId), HttpStatus.CREATED);</span>
+<span class="fc" id="L43">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L44">        Optional&lt;MongoUser&gt; user = userService.findUserByUsername(username);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (user.isPresent()) {</span>
+<span class="fc" id="L46">            String userId = user.get().id();</span>
+<span class="fc" id="L47">            book.withUserId(userId); // add this line to set the userID in the book object</span>
+<span class="fc" id="L48">            return new ResponseEntity&lt;&gt;(bookService.addBook(book, userId), HttpStatus.CREATED);</span>
         }
-<span class="nc" id="L47">        throw new NoSuchElementException(&quot;user not found&quot;);</span>
+<span class="nc" id="L50">        throw new NoSuchElementException(NO_USER_FOUND);</span>
     }
 
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Book&gt; getBookById(@PathVariable String id) {
-<span class="fc" id="L52">        return new ResponseEntity&lt;&gt;(bookService.getBookById(id), HttpStatus.OK);</span>
+<span class="fc" id="L55">        return new ResponseEntity&lt;&gt;(bookService.getBookById(id), HttpStatus.OK);</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Book&gt; updateBookById(@PathVariable String id, @RequestBody Book updatedBook) {
-<span class="fc" id="L57">        return new ResponseEntity&lt;&gt;(bookService.updateBookById(id, updatedBook), HttpStatus.OK);</span>
+<span class="fc" id="L60">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L61">        Optional&lt;MongoUser&gt; user = userService.findUserByUsername(username);</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (user.isPresent()) {</span>
+<span class="fc" id="L63">            String userId = user.get().id();</span>
+<span class="fc" id="L64">            updatedBook.withUserId(userId); // add this line to set the userID in the updated book object</span>
+<span class="fc" id="L65">            return new ResponseEntity&lt;&gt;(bookService.updateBookById(id, updatedBook), HttpStatus.OK);</span>
+        }
+<span class="nc" id="L67">        throw new NoSuchElementException(NO_USER_FOUND);</span>
     }
 
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; deleteBookById(@PathVariable String id) {
-<span class="fc" id="L62">        bookService.deleteBookById(id);</span>
-<span class="fc" id="L63">        return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);</span>
+<span class="fc" id="L72">        String username = SecurityContextHolder.getContext().getAuthentication().getName();</span>
+<span class="fc" id="L73">        Optional&lt;MongoUser&gt; user = userService.findUserByUsername(username);</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (user.isPresent()) {</span>
+<span class="fc" id="L75">            String userId = user.get().id();</span>
+<span class="fc" id="L76">            bookService.deleteBookByIdAndUserId(id, userId); // change to deleteBookByIdAndUserId method which takes userID as well</span>
+<span class="fc" id="L77">            return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);</span>
+        }
+<span class="nc" id="L79">        throw new NoSuchElementException(NO_USER_FOUND);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

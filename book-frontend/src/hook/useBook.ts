@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {Book, BookModel} from "../model/BookModel";
+import {toast} from "react-toastify";
 
 export const useBook = () => {
     const [books, setBooks] = useState<Book[]>([]);
@@ -9,6 +10,7 @@ export const useBook = () => {
     const onTextChange = (text: string) => {
         setText(text);
     }
+
     const filteredBooks = books.filter((book) =>
         book.title.toLowerCase().includes(text.toLowerCase()) ||
         book.author.toLowerCase().includes(text.toLowerCase()) ||
@@ -22,10 +24,11 @@ export const useBook = () => {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
-        }).then((response) => {setBooks(response.data)})
+        }).then((response) => {
+            setBooks(response.data)
+        })
             .catch((error) => {
                 console.error(error);
             })
@@ -37,13 +40,12 @@ export const useBook = () => {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
-        }).then(() => {
-            loadAllBooks()
+        }).then((response) => {
+            setBooks([...books, response.data])
         }).catch((error) => {
-            console.error(error);
+            toast.error("Unkown Error, try again later! " + error.response.statusText, {autoClose: 10000})
         })
     }
 
@@ -54,7 +56,6 @@ export const useBook = () => {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
         }).then((response) => {
@@ -65,12 +66,9 @@ export const useBook = () => {
                     return currentBook;
                 }
             }))
-        }).then(() => {
-            loadAllBooks()
+        }).catch(error => {
+            console.error(error);
         })
-            .catch(error => {
-                console.error(error);
-            })
     }
 
     const deleteBook = async (id: string) => {
@@ -80,7 +78,6 @@ export const useBook = () => {
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
             },
             withCredentials: true
         }).then(() => {
