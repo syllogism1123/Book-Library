@@ -30,11 +30,6 @@ public class UserController {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    @GetMapping("/{username}")
-    public MongoUser findUserByUsername(@PathVariable String username) {
-        return userService.findUserByUsername(username);
-    }
-
     @PostMapping("/signup")
     public ResponseEntity<MongoUser> createUser(@RequestBody MongoUserDTO mongoUserDTO) {
         userService.createMongoUser(mongoUserDTO);

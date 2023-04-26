@@ -4,18 +4,11 @@ import {BookModel} from "../model/BookModel";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 
-
 export const BookDetails = () => {
     const [book, setBook] = useState<BookModel>()
     const {id} = useParams<{ id: string }>();
     const loadBookById = (id: string) => {
-        const authToken = localStorage.getItem('authToken');
         axios.get('http://localhost:8080/api/books/' + id, {
-            headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
-            },
             withCredentials: true
         })
             .then((response) => {
