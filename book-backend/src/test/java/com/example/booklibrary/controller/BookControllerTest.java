@@ -1,6 +1,5 @@
 package com.example.booklibrary.controller;
 
-
 import com.example.booklibrary.model.Book;
 import com.example.booklibrary.model.MongoUser;
 import com.example.booklibrary.repository.BookRepository;
@@ -72,12 +71,6 @@ class BookControllerTest {
     @WithMockUser
     void getBookById() throws Exception {
         when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
-
-        mvc.perform(post("/api/books").
-                        contentType(MediaType.APPLICATION_JSON).
-                        content(json.write(book).getJson()).with(csrf())).
-                andExpect(status().isCreated());
-
         mvc.perform(get("/api/books/" + id).
                         contentType(MediaType.APPLICATION_JSON)).
                 andExpect(status().isOk())
@@ -96,6 +89,18 @@ class BookControllerTest {
     @Test
     @DirtiesContext
     @WithMockUser
+    void getBookById_IdNotFound() throws Exception {
+        when(bookRepository.findById(id)).thenReturn(Optional.empty());
+
+        mvc.perform(get("/api/books/123").
+                        contentType(MediaType.APPLICATION_JSON)).
+                andExpect(status().isNotFound());
+
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
     void addBook() throws Exception {
         mvc.perform(post("/api/books").
                         contentType(MediaType.APPLICATION_JSON).
@@ -109,11 +114,6 @@ class BookControllerTest {
     void updateBookById() throws Exception {
         when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
 
-        mvc.perform(post("/api/books").
-                        contentType(MediaType.APPLICATION_JSON).
-                        content(json.write(book).getJson()).with(csrf())).
-                andExpect(status().isCreated());
-
         mvc.perform(put("/api/books/" + id).
                         contentType(MediaType.APPLICATION_JSON).
                         content("""
@@ -125,15 +125,40 @@ class BookControllerTest {
                                 }
                                 """).with(csrf())).
                 andExpect(status().isOk());
+    }
 
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void updateBookById_IdNotFound() throws Exception {
+        when(bookRepository.findById(id)).thenReturn(Optional.empty());
+
+        mvc.perform(put("/api/books/" + id).
+                        contentType(MediaType.APPLICATION_JSON).
+                        with(csrf())).
+                andExpect(status().isBadRequest());
     }
 
     @Test
     @DirtiesContext
     @WithMockUser
     void deleteBookById() throws Exception {
+        when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
         mvc.perform(delete("/api/books/" + id).
                         contentType(MediaType.APPLICATION_JSON).with(csrf())).
-                andExpect(status().isNoContent());
+                andExpect(status().isOk());
     }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    void deleteBookById_IdNotFound() throws Exception {
+        when(bookRepository.findById(id)).thenReturn(Optional.empty());
+        mvc.perform(delete("/api/books/" + id).
+                        contentType(MediaType.APPLICATION_JSON).with(csrf())).
+                andExpect(status().isNotFound());
+    }
+
+
 }

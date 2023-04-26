@@ -13,9 +13,9 @@ import java.util.NoSuchElementException;
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity&lt;ApiError&gt; handleNoSuchElementException(NoSuchElementException exception) {
-<span class="nc" id="L16">        ApiError apiException = new ApiError(exception.getMessage(), Instant.now());</span>
+<span class="fc" id="L16">        ApiError apiException = new ApiError(exception.getMessage(), Instant.now());</span>
 
-<span class="nc" id="L18">        return new ResponseEntity&lt;&gt;(apiException, HttpStatus.NOT_FOUND);</span>
+<span class="fc" id="L18">        return new ResponseEntity&lt;&gt;(apiException, HttpStatus.NOT_FOUND);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

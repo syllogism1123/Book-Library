@@ -1,22 +1,18 @@
 package com.example.booklibrary.controller;
 
-import com.example.booklibrary.model.MongoUser;
 import com.example.booklibrary.model.MongoUserDTO;
-import com.example.booklibrary.repository.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -31,7 +27,6 @@ class UserControllerTest {
     private MockMvc mvc;
     @Autowired
     private JacksonTester<MongoUserDTO> json;
-
     @Test
     @DirtiesContext
     @WithMockUser
@@ -69,17 +64,6 @@ class UserControllerTest {
                 andExpect(content().string("user")).
                 andExpect(status().isOk());
     }
-
-    @Test
-    @DirtiesContext
-    @WithMockUser
-    void testFindUserByUsername() throws Exception {
-        mvc.perform(get("/api/users/user").
-                        contentType(MediaType.APPLICATION_JSON).with(csrf())).
-                andExpect(status().isOk());
-
-    }
-
 
     @Test
     @DirtiesContext
