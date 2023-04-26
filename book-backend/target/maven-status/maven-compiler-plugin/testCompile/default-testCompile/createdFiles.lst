@@ -1,3 +1,4 @@
+com\example\booklibrary\controller\UserControllerTest.class
 com\example\booklibrary\service\UserServiceTest.class
 com\example\booklibrary\service\BookServiceTest.class
 com\example\booklibrary\controller\BookControllerTest.class

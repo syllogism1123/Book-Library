@@ -6,7 +6,7 @@ import com.example.booklibrary.repository.MongoUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -29,7 +29,7 @@ public class UserService {
         }
     }
 
-    public Optional<MongoUser> findUserByUsername(String username) {
-        return mongoUserRepository.findMongoUserByUsername(username);
+    public MongoUser findUserByUsername(String username) {
+        return mongoUserRepository.findMongoUserByUsername(username).orElseThrow(NoSuchElementException::new);
     }
 }
