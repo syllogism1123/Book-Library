@@ -27,7 +27,7 @@ export default function useUser() {
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             withCredentials: true,
         }).then(() => {
-            setUsername("")
+            setUsername(" ")
             setIsLoggedIn(false)
         }).catch(error => {
             console.error(error);
@@ -47,9 +47,12 @@ export default function useUser() {
     }, [isLoggedIn]);
 
     useEffect(() => {
-        loadUser(username).catch(
-            (e) => console.error(e)
-        )
+        // Load user only after one render cycle
+        if (!username) {
+            return;
+        }
+
+        loadUser(username).catch((e) => console.error(e));
     }, [username]);
 
     useEffect(() => {
