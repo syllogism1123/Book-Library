@@ -19,7 +19,7 @@ public class BookController {
     private final BookService bookService;
     private final UserService userService;
 
-    private static final String NO_USER_FOUND = "user not found";
+    private static final String NO_BOOK_FOUND = "Book not found";
 
     public BookController(BookService bookService, UserService userService) {
         this.bookService = bookService;
@@ -58,7 +58,7 @@ public class BookController {
             updatedBook.withUserId(userId);
             return new ResponseEntity<>(bookService.updateBookById(id, updatedBook), HttpStatus.OK);
         }
-        throw new NoSuchElementException(NO_USER_FOUND);
+        throw new NoSuchElementException(NO_BOOK_FOUND);
     }
 
     @DeleteMapping("/{id}")
@@ -69,7 +69,8 @@ public class BookController {
             String userId = user.id();
             bookService.deleteBookByIdAndUserId(id, userId);
             return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            throw new NoSuchElementException(NO_BOOK_FOUND);
         }
-        throw new NoSuchElementException(NO_USER_FOUND);
     }
 }

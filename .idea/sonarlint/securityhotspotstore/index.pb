@@ -23,8 +23,6 @@ X
 (book-frontend/src/component/EditBook.tsx,4\6\462e35cfc384fef4a01cde2b87173bc5721236e6
 Z
 *book-frontend/src/component/SignUpPage.tsx,d\f\df8d8dd0fe56c763e2457b3f5ea875e31c299ba3
-W
-'book-frontend/src/component/AddBook.tsx,7\7\771fa8e04a9202a5e927baeea879763c2543bb2b
 [
 +book-frontend/src/component/BookDetails.tsx,0\7\076b93d1f3815c49adf796e8eaf92b40b03de9c7
 c
