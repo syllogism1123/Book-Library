@@ -2,6 +2,8 @@ import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Alert, Button, FormControl, TextField} from "@mui/material";
 import useUser from "../hook/useUser";
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
     onLogin: (username: string, password: string) => Promise<boolean>
@@ -19,6 +21,16 @@ export const LoginPage = (props: Props) => {
         props.onLogin(username, password).then((s) => {
             if (s) {
                 navigate("/books")
+                toast.success('You have successfully logged in!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
 
             } else {
                 setError(true);

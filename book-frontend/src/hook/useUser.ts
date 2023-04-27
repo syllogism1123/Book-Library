@@ -1,7 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {User, UserModel} from "../model/UserModel";
-
 export default function useUser() {
     const [user, setUser] = useState<User>();
     const [error, setError] = useState<boolean>();

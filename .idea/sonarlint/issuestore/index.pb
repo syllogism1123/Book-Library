@@ -16,10 +16,6 @@ I
 [
 +book-frontend/src/component/BooKGallery.tsx,4\7\47e56b3e108b24e154329fcc6967ccb5b7a8b5de
 Z
-*book-frontend/src/component/LogoutPage.tsx,c\0\c035a6c145babcb4ec716a7366e0b9754565c746
-Y
-)book-frontend/src/component/LoginPage.tsx,8\8\88bd55c0f72a7d32dda0dfb1944337dfd6e91988
-Z
 *book-frontend/src/component/SignUpPage.tsx,d\f\df8d8dd0fe56c763e2457b3f5ea875e31c299ba3
 X
 (book-frontend/src/component/EditBook.tsx,4\6\462e35cfc384fef4a01cde2b87173bc5721236e6

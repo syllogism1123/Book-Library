@@ -14,7 +14,7 @@ import {LogoutPage} from "./component/LogoutPage";
 import PrimarySearchAppBar from "./component/PrimarySearchAppBar";
 import {SignUpPage} from "./component/SignUpPage";
 import ProtectedRoutes from "./component/ProtectedRoutes";
-
+import { ToastContainer } from 'react-toastify';
 
 function App() {
     const {isLoggedIn, login, logout, createUser} = useUser();
@@ -31,6 +31,7 @@ function App() {
     return (
         <div className="App">
             <PrimarySearchAppBar text={text} onTextChange={onTextChange}/>
+            <ToastContainer />
             <BrowserRouter>
                 <Header/>
                 <Routes>
