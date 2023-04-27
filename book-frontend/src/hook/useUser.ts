@@ -1,11 +1,12 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {User,UserModel} from "../model/UserModel";
+import {User, UserModel} from "../model/UserModel";
 
 export default function useUser() {
     const [user, setUser] = useState<User>();
     const [error, setError] = useState<boolean>();
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState("");
     const login = async (username: string, password: string) => {
         return await axios.post("http://localhost:8080/api/users/login", undefined, {
             withCredentials: true,
@@ -15,6 +16,7 @@ export default function useUser() {
             }
         }).then(() => {
             setIsLoggedIn(true)
+            setUsername(username)
             return true;
         }).catch(error => {
             console.error(error);
@@ -25,6 +27,7 @@ export default function useUser() {
         return await axios.post("http://localhost:8080/api/users/logout", undefined, {
             withCredentials: true,
         }).then(() => {
+            setUsername("")
             setIsLoggedIn(false)
         }).catch(error => {
             console.error(error);
@@ -43,6 +46,16 @@ export default function useUser() {
         window.localStorage.setItem('CURRENT_USER_ACTIVE', JSON.stringify(isLoggedIn))
     }, [isLoggedIn]);
 
+    useEffect(() => {
+        loadUser(username).catch(
+            (e) => console.error(e)
+        )
+    }, [username]);
+
+    useEffect(() => {
+
+        console.log(user?.id);
+    }, [user]);
 
     const createUser = async (newUser: UserModel) => {
         return await axios.post("http://localhost:8080/api/users/signup", newUser, {
@@ -56,8 +69,19 @@ export default function useUser() {
         })
     }
 
+    const loadUser = async (username: string) => {
+        return await axios.get(`http://localhost:8080/api/users/${username}`, {
+            withCredentials: true
+        }).then((response) => {
+            setUser(response.data)
 
-    return {user,login, logout, createUser, error, setError, isLoggedIn}
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+
+    return {user, login, logout, createUser, error, setError, isLoggedIn}
 }
 
 

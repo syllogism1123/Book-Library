@@ -15,6 +15,7 @@
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
+    "bcrypt": "^5.1.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -55,5 +56,8 @@
     "allowedHosts": [
       "localhost"
     ]
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0"
   }
 }
