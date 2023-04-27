@@ -36,11 +36,17 @@ public class UserController {
 <span class="fc" id="L36">        return new ResponseEntity&lt;&gt;(HttpStatus.CREATED);</span>
     }
 
+    @GetMapping(&quot;/{username}&quot;)
+    public MongoUser loadMongoUserByName(@PathVariable String username) {
+<span class="nc" id="L41">        return userService.findUserByUsername(username);</span>
+    }
+
+
     @PostMapping(&quot;/logout&quot;)
     public void logout(HttpSession httpSession) {
-<span class="fc" id="L41">        httpSession.invalidate();</span>
-<span class="fc" id="L42">        SecurityContextHolder.clearContext();</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L47">        httpSession.invalidate();</span>
+<span class="fc" id="L48">        SecurityContextHolder.clearContext();</span>
+<span class="fc" id="L49">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
