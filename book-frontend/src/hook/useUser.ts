@@ -51,7 +51,6 @@ export default function useUser() {
         if (!username) {
             return;
         }
-
         loadUser(username).catch((e) => console.error(e));
     }, [username]);
 
@@ -82,7 +81,6 @@ export default function useUser() {
             console.error(error);
         })
     }
-
 
     return {user, login, logout, createUser, error, setError, isLoggedIn}
 }

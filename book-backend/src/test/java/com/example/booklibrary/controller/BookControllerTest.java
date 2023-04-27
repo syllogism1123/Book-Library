@@ -71,6 +71,7 @@ class BookControllerTest {
     @WithMockUser
     void getBookById() throws Exception {
         when(bookRepository.findById(id)).thenReturn(Optional.ofNullable(book));
+
         mvc.perform(get("/api/books/" + id).
                         contentType(MediaType.APPLICATION_JSON)).
                 andExpect(status().isOk())
